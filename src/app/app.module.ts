@@ -4,11 +4,16 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import { MaterialModule } from '@angular/material';
+
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
 
-// Must export the config
+// Feature Modules
+import { CoreModule } from './core/core.module';
+
+import { AppRoutingModule } from './app-routing.module';
+
 export const firebaseConfig = {
     apiKey: "AIzaSyBLF6Pyh4BJPYhQlhO6ZiqBIdQYROec0AI",
     authDomain: "tracking-app-77db8.firebaseapp.com",
@@ -30,6 +35,8 @@ const myFirebaseAuthConfig = {
     BrowserModule,
     FormsModule,
     HttpModule,
+    CoreModule,
+    AppRoutingModule, 
     MaterialModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig) 
   ],
