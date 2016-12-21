@@ -1,0 +1,25 @@
+<md-card>
+
+  <md-toolbar color="white">Create Organisation</md-toolbar>
+  <md-card-content>
+
+  	<div> {{ (af.auth | async)?.uid }} </div>
+  	<button (click)="login()">Login</button>
+  	<button (click)="logout()">Logout</button>
+
+ 
+
+    <form [formGroup]="orgcreateform" (ngSubmit)="onSubmit()">
+  
+
+    <md-input formControlName="title" placeholder="Organisation Title" style="width: 100%">
+    <md-hint align="end" *ngIf="!orgcreateform.controls.title.valid && !orgcreateform.controls.title.pristine">We only have Level 9 - 13</md-hint>
+    </md-input>
+
+
+    <button type="submit" md-raised-button [disabled]="!orgcreateform.valid">Submit</button>
+ 
+    </form>
+  </md-card-content>
+
+</md-card>
