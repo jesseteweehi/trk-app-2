@@ -7,6 +7,7 @@ import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
+import { LearningExperienceComponent } from './learning-experience/learning-experience.component';
 
 // Must export the config
 export const firebaseConfig = {
@@ -24,7 +25,8 @@ const myFirebaseAuthConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LearningExperienceComponent
   ],
   imports: [
     BrowserModule,
