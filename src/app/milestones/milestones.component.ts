@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map'
   styleUrls: ['./milestones.component.css']
 })
 export class MilestonesComponent implements OnInit {
-  people:Observable<any[]>
+  people:Observable<any[]>;
   
   constructor(public af:AngularFire) {
   this.people = af.database.list('/people')
@@ -17,6 +17,9 @@ export class MilestonesComponent implements OnInit {
   		return people.map((person) => 
   		{
   			person.todos = af.database.list(`/todos/${person.$key}`)
+  			person.resources = af.database.list(`/resources/${person.$key}`)
+        person.marking = af.database.list(`/marking/${person.$key}`)
+        person.stream = af.database.list(`/stream/${person.$key}`)
   			return person
 
   		})
@@ -24,6 +27,23 @@ export class MilestonesComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  newComment(comment, stream, form) {
+    comment.push(form)
+    stream.push(form)
+  }
+
+  newResource(resource, stream, form) {
+    resource.push(form)
+    stream.push(form)
+    
+  }
+
+  newMarking(marking, stream, form) {
+    marking.push(form)
+    stream.push(form)
+    
   }
 
 }

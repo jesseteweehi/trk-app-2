@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import { MaterialModule } from '@angular/material';
 import 'hammerjs';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { LearningExperienceComponent } from './learning-experience/learning-experience.component';
@@ -40,6 +41,7 @@ const myFirebaseAuthConfig = {
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    FlexLayoutModule.forRoot(),
     MaterialModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig) 
   ],

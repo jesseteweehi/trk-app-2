@@ -1,0 +1,25 @@
+.container {
+  column-count: 3;
+  column-gap: 0;
+}
+
+
+.flexy {
+  break-inside: avoid;
+  padding: 5px;
+}
+
+.centered {
+	margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+}
+
+
+.highlight {
+	background-color: #FCFCFC;
+}
+
+md-card {
+	background-color: #e4e3e1;
+}

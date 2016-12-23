@@ -1,24 +1,128 @@
-<h2>People Working PLease</h2>
-<form (submit)="people.push({
-	name:newPerson.value
-})">
-	<input #newPerson>
-	<label for="newPerson">Add Person</label> 
-</form>
+<div class="container">
+  <div class="flexy" *ngFor="let person of people | async"><md-card>
+  <!--  <md-card-subtitle>Subtitle first</md-card-subtitle> -->
+   <md-card-title>{{ person.name }}</md-card-title> 
 
-<ul>
-	<li *ngFor="let person of people | async">
-		Worker: {{ person.name }}
-		<form (submit)="person.todos.push({
-			text:newTodo.value
-		})">
-			<input #newTodo>
-			<label for="newTodo">Add Todo</label> 
-		</form>
-		<ul>
-			<li *ngFor="let todo of person.todos | async">
-				{{todo.text}}
-			</li>
-		</ul>
-	</li>
-</ul>
+   <md-card-content>
+      <md-list-item  *ngFor="let todo of person.stream | async">
+            
+                <p md-line>
+                  <span class="highlight"> Message </span>
+                  <span> {{todo.text}} </span>
+                </p>
+                <hr>  
+      </md-list-item>
+
+
+<!--    <div class="container">
+   		  <div class="flexy">
+   		  <md-list-item  *ngFor="let todo of person.todos | async">
+   		
+   		    <p md-line>
+   		      <span class="highlight"> Message </span>
+   		      <span> {{todo.text}} </span>
+   		    </p>
+   		    <hr>  
+   		  </md-list-item>
+   		  </div>
+   		  <div class="flexy">
+   		  <md-list-item  *ngFor="let todo of person.resources | async">
+   		
+   		    <p md-line>
+   		      <span class="highlight"> Resource </span>
+   		      <span> {{todo.text}} </span>
+   		    </p>
+   		    <hr>  
+   		  </md-list-item>
+   		  </div>
+   		  <div class="flexy">
+        <md-list-item  *ngFor="let todo of person.marking | async">
+      
+          <p md-line>
+            <span class="highlight"> Marking </span>
+            <span> {{todo.text}} </span>
+          </p>
+          <hr>  
+        </md-list-item>    
+        </div>
+   </div>  -->       
+   </md-card-content>
+   <md-card-actions>
+        
+   </md-card-actions>
+</md-card>
+
+<md-card class="highlight">
+
+   		    <form (submit)="newComment( person.todos, person.stream,{ comment:newTodo.value})">
+   		    			
+   		    			 
+   		    				  <md-input #newTodo md-input placeholder="Add Comment" style="width:100%"></md-input>
+   		    			  
+   		    		
+   		    </form>
+
+   		    <form (submit)="newResource( person.resources, person.stream,{ resource:resource.value})">
+   		    			
+   		    			 
+   		    				  <md-input #resource md-input placeholder="Add Resource" style="width:100%"></md-input>
+   		    			  
+   		    		
+   		    </form>
+
+          <form (submit)="newMarking( person.marking, person.stream, { mark:marking.value})">
+            
+                
+                 
+                    <md-input #marking md-input placeholder="Add to Mark" style="width:100%"></md-input>
+                  
+              
+          </form>  
+	
+</md-card>
+</div>
+
+
+
+		 
+
+
+
+<div class="centered">
+<md-card>
+   <md-card-subtitle>Subtitle first</md-card-subtitle>
+   <md-card-title>People Working Please</md-card-title>   
+   <md-card-content>
+	   <form (submit)="people.push({
+		   	name:newPerson.value
+		   })">
+		   	<input #newPerson>
+		   	<label for="newPerson">Add Person</label> 
+	   </form>       
+   </md-card-content>
+   <md-card-actions>
+     
+   </md-card-actions>
+</md-card>
+</div>
+
+
+<!-- <button md-mini-fab [mdMenuTriggerFor]="menu">
+    <md-icon class="md-24">add</md-icon>
+</button>
+
+<md-menu y-position="above" #menu="mdMenu">
+    <button md-menu-item> Refresh </button>
+    <button md-menu-item> Settings </button>
+    <button md-menu-item> Help </button>
+    <button md-menu-item disabled> Sign Out </button>
+</md-menu> -->
+
+
+
+
+
+
+
+
+
