@@ -1,0 +1,12 @@
+{{learningexperience | json }}
+
+<form [formGroup]="form">
+
+Title:
+	<br>
+	<input type="text" name="username" formControlName="title">
+	<br>
+
+<button (click)="save(form.value)">Create Milestone</button>
+<button (click)="reset()">reset</button>
+</form>	

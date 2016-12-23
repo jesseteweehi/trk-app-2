@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import { MaterialModule } from '@angular/material';
@@ -8,6 +9,8 @@ import 'hammerjs';
 
 import { AppComponent } from './app.component';
 import { LearningExperienceComponent } from './learning-experience/learning-experience.component';
+import { LearningExperienceFormComponent } from './learning-experience-form/learning-experience-form.component';
+import { LearningExperienceItemComponent } from './learning-experience-item/learning-experience-item.component';
 
 // Must export the config
 export const firebaseConfig = {
@@ -26,11 +29,14 @@ const myFirebaseAuthConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    LearningExperienceComponent
+    LearningExperienceComponent,
+    LearningExperienceFormComponent,
+    LearningExperienceItemComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     MaterialModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig) 
