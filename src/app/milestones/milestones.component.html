@@ -54,7 +54,7 @@
 
 <md-card class="highlight">
 
-   		    <form (submit)="newComment( person.todos, person.stream,{ comment:newTodo.value})">
+   		    <form (submit)="newComment( person.todos, person.stream,{ text:newTodo.value})">
    		    			
    		    			 
    		    				  <md-input #newTodo md-input placeholder="Add Comment" style="width:100%"></md-input>
@@ -62,7 +62,7 @@
    		    		
    		    </form>
 
-   		    <form (submit)="newResource( person.resources, person.stream,{ resource:resource.value})">
+   		    <form (submit)="newResource( person.resources, person.stream,{ text:resource.value})">
    		    			
    		    			 
    		    				  <md-input #resource md-input placeholder="Add Resource" style="width:100%"></md-input>
@@ -70,7 +70,7 @@
    		    		
    		    </form>
 
-          <form (submit)="newMarking( person.marking, person.stream, { mark:marking.value})">
+          <form (submit)="newMarking( person.marking, person.stream, { text:marking.value})">
             
                 
                  
