@@ -3,49 +3,11 @@
   <!--  <md-card-subtitle>Subtitle first</md-card-subtitle> -->
    <md-card-title>{{ person.name }}</md-card-title> 
 
-   <md-card-content>
-      <md-list-item  *ngFor="let todo of person.stream | async">
-            
-                <p md-line>
-                  <span class="highlight"> Message </span>
-                  <span> {{todo.text}} </span>
-                </p>
-                <hr>  
-      </md-list-item>
+   <md-card-content *ngFor="let todo of person.stream | async">
+    
+    {{todo.comment}}
 
-
-<!--    <div class="container">
-   		  <div class="flexy">
-   		  <md-list-item  *ngFor="let todo of person.todos | async">
-   		
-   		    <p md-line>
-   		      <span class="highlight"> Message </span>
-   		      <span> {{todo.text}} </span>
-   		    </p>
-   		    <hr>  
-   		  </md-list-item>
-   		  </div>
-   		  <div class="flexy">
-   		  <md-list-item  *ngFor="let todo of person.resources | async">
-   		
-   		    <p md-line>
-   		      <span class="highlight"> Resource </span>
-   		      <span> {{todo.text}} </span>
-   		    </p>
-   		    <hr>  
-   		  </md-list-item>
-   		  </div>
-   		  <div class="flexy">
-        <md-list-item  *ngFor="let todo of person.marking | async">
-      
-          <p md-line>
-            <span class="highlight"> Marking </span>
-            <span> {{todo.text}} </span>
-          </p>
-          <hr>  
-        </md-list-item>    
-        </div>
-   </div>  -->       
+       
    </md-card-content>
    <md-card-actions>
         
@@ -62,7 +24,7 @@
    		    		
    		    </form>
 
-   		    <form (submit)="newResource( person.resources, person.stream,{ resource:resource.value})">
+   		    <form (submit)="newResource( person.resources, person.stream,{ comment:resource.value})">
    		    			
    		    			 
    		    				  <md-input #resource md-input placeholder="Add Resource" style="width:100%"></md-input>
@@ -70,7 +32,7 @@
    		    		
    		    </form>
 
-          <form (submit)="newMarking( person.marking, person.stream, { mark:marking.value})">
+          <form (submit)="newMarking( person.marking, person.stream, { comment:marking.value})">
             
                 
                  
@@ -81,11 +43,6 @@
 	
 </md-card>
 </div>
-
-
-
-		 
-
 
 
 <div class="centered">
@@ -101,7 +58,10 @@
 	   </form>       
    </md-card-content>
    <md-card-actions>
-     
+   <form (keyup)="filterBy( input.value)">
+   <input  placeholder="Search" #input> 
+   </form> 
+   {{ titleSubject | async }} 
    </md-card-actions>
 </md-card>
 </div>

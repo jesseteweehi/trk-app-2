@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { Observable } from 'rxjs';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map'
+
 
 @Component({
   selector: 'trk-milestones',
@@ -10,9 +12,16 @@ import 'rxjs/add/operator/map'
 })
 export class MilestonesComponent implements OnInit {
   people:Observable<any[]>;
+  titleSubject: Subject<any>;
   
   constructor(public af:AngularFire) {
-  this.people = af.database.list('/people')
+  this.titleSubject = new Subject();
+  this.people = af.database.list('/people', {
+          query:{
+            orderByChild: 'name',
+            equalTo: this.titleSubject,
+          }
+        })
   	.map((people) => {
   		return people.map((person) => 
   		{
@@ -46,4 +55,11 @@ export class MilestonesComponent implements OnInit {
     
   }
 
+  filterBy(title: string) {
+    this.titleSubject.next(title);
+    console.log(title); 
+  }
 }
+
+
+
