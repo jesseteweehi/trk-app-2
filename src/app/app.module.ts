@@ -9,9 +9,6 @@ import 'hammerjs';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
-import { LearningExperienceComponent } from './learning-experience/learning-experience.component';
-import { LearningExperienceFormComponent } from './learning-experience-form/learning-experience-form.component';
-import { LearningExperienceItemComponent } from './learning-experience-item/learning-experience-item.component';
 import { MilestonesComponent } from './milestones/milestones.component';
 
 // Must export the config
@@ -31,9 +28,6 @@ const myFirebaseAuthConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    LearningExperienceComponent,
-    LearningExperienceFormComponent,
-    LearningExperienceItemComponent,
     MilestonesComponent
   ],
   imports: [
