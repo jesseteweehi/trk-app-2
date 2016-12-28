@@ -1,51 +1,23 @@
-<div class="container">
-  <div class="flexy" *ngFor="let person of people | async"><md-card>
-  <!--  <md-card-subtitle>Subtitle first</md-card-subtitle> -->
-   <md-card-title>{{ person.name }}</md-card-title> 
+{{id}}
 
+
+<md-card class='highlight'>
+ <h1>{{ (learningExperience | async)?.name }}</h1>
+</md-card>
+
+<div class="container">
+  <div class="flexy" *ngFor="let milestone of milestones | async"><md-card>
+  <!--  <md-card-subtitle>Subtitle first</md-card-subtitle> -->
+   <md-card-title>{{ milestone.name }}</md-card-title> 
    <md-card-content>
-      <md-list-item  *ngFor="let todo of person.stream | async">
+      <md-list-item  *ngFor="let todo of milestone.stream | async">
             
                 <p md-line>
                   <span class="highlight"> Message </span>
                   <span> {{todo.text}} </span>
                 </p>
                 <hr>  
-      </md-list-item>
-
-
-<!--    <div class="container">
-   		  <div class="flexy">
-   		  <md-list-item  *ngFor="let todo of person.todos | async">
-   		
-   		    <p md-line>
-   		      <span class="highlight"> Message </span>
-   		      <span> {{todo.text}} </span>
-   		    </p>
-   		    <hr>  
-   		  </md-list-item>
-   		  </div>
-   		  <div class="flexy">
-   		  <md-list-item  *ngFor="let todo of person.resources | async">
-   		
-   		    <p md-line>
-   		      <span class="highlight"> Resource </span>
-   		      <span> {{todo.text}} </span>
-   		    </p>
-   		    <hr>  
-   		  </md-list-item>
-   		  </div>
-   		  <div class="flexy">
-        <md-list-item  *ngFor="let todo of person.marking | async">
-      
-          <p md-line>
-            <span class="highlight"> Marking </span>
-            <span> {{todo.text}} </span>
-          </p>
-          <hr>  
-        </md-list-item>    
-        </div>
-   </div>  -->       
+      </md-list-item>       
    </md-card-content>
    <md-card-actions>
         
@@ -54,7 +26,7 @@
 
 <md-card class="highlight">
 
-   		    <form (submit)="newComment( person.todos, person.stream,{ text:newTodo.value})">
+   		    <form #streamForm (submit)="newComment( milestone.todos, milestone.stream,{ text:newTodo.value}); streamForm.reset()">
    		    			
    		    			 
    		    				  <md-input #newTodo md-input placeholder="Add Comment" style="width:100%"></md-input>
@@ -62,7 +34,7 @@
    		    		
    		    </form>
 
-   		    <form (submit)="newResource( person.resources, person.stream,{ text:resource.value})">
+   		    <form (submit)="newResource( milestone.resources, milestone.stream,{ text:resource.value})">
    		    			
    		    			 
    		    				  <md-input #resource md-input placeholder="Add Resource" style="width:100%"></md-input>
@@ -70,11 +42,11 @@
    		    		
    		    </form>
 
-          <form (submit)="newMarking( person.marking, person.stream, { text:marking.value})">
+          <form (submit)="newMarking( milestone.marking, milestone.stream, { text:marking.value})">
             
                 
                  
-                    <md-input #marking md-input placeholder="Add to Mark" style="width:100%"></md-input>
+                    <md-input #marking md-input placeholder="Add Assessment" style="width:100%"></md-input>
                   
               
           </form>  
@@ -88,35 +60,26 @@
 
 
 
-<div class="centered">
+
 <md-card>
-   <md-card-subtitle>Subtitle first</md-card-subtitle>
-   <md-card-title>People Working Please</md-card-title>   
+   <md-card-subtitle>Learning Experience</md-card-subtitle>
+   <md-card-title>Create Milestone</md-card-title>   
    <md-card-content>
-	   <form (submit)="people.push({
+	   <form (submit)="milestones.push({
 		   	name:newPerson.value
 		   })">
 		   	<input #newPerson>
-		   	<label for="newPerson">Add Person</label> 
+		   	<label for="newPerson">Add Milestone</label> 
 	   </form>       
    </md-card-content>
    <md-card-actions>
      
    </md-card-actions>
 </md-card>
-</div>
 
 
-<!-- <button md-mini-fab [mdMenuTriggerFor]="menu">
-    <md-icon class="md-24">add</md-icon>
-</button>
 
-<md-menu y-position="above" #menu="mdMenu">
-    <button md-menu-item> Refresh </button>
-    <button md-menu-item> Settings </button>
-    <button md-menu-item> Help </button>
-    <button md-menu-item disabled> Sign Out </button>
-</md-menu> -->
+
 
 
 

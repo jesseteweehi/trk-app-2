@@ -1,0 +1,19 @@
+.fullwidth: {
+	width: 100%;
+}
+
+.highlight {
+	background-color: #FCFCFC;
+	margin-bottom: 50px;
+}
+
+md-card {
+	margin: auto;
+	width: 600px;
+}
+
+md-card-title {
+	border-bottom: grey;
+	border-bottom-style: solid;
+    border-bottom-width: 10px;
+}

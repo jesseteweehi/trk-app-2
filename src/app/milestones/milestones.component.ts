@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Route, ActivatedRoute } from '@angular/router';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import 'rxjs/add/operator/map'
 
 @Component({
@@ -9,24 +10,41 @@ import 'rxjs/add/operator/map'
   styleUrls: ['./milestones.component.css']
 })
 export class MilestonesComponent implements OnInit {
-  people:Observable<any[]>;
+  private subscription: Subscription;
+  id : string;
+
+  milestones:Observable<any[]>;
+  learningExperience: FirebaseObjectObservable<any>
   
-  constructor(public af:AngularFire) {
-  this.people = af.database.list('/people')
-  	.map((people) => {
-  		return people.map((person) => 
+  
+  constructor(public af:AngularFire, ar: ActivatedRoute) {
+  this.subscription = ar.params.subscribe(
+    (param: any) => this.id = param['id']
+    );
+
+  this.learningExperience = af.database.object(`learningexperiences/${this.id}`)
+
+  this.milestones = af.database.list(`milestones/${this.id}`)
+  	.map((milestones) => {
+  		return milestones.map((milestone) => 
   		{
-  			person.todos = af.database.list(`/todos/${person.$key}`)
-  			person.resources = af.database.list(`/resources/${person.$key}`)
-        person.marking = af.database.list(`/marking/${person.$key}`)
-        person.stream = af.database.list(`/stream/${person.$key}`)
-  			return person
+  			milestone.todos = af.database.list(`/todos/${milestone.$key}`)
+  			milestone.resources = af.database.list(`/resources/${milestone.$key}`)
+        milestone.marking = af.database.list(`/marking/${milestone.$key}`)
+        milestone.stream = af.database.list(`/stream/${milestone.$key}`)
+  			return milestone
 
   		})
-  	}); 
+  	});
+  
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+
   }
 
   newComment(comment, stream, form) {

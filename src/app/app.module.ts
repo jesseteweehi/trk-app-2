@@ -7,9 +7,12 @@ import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {RouterModule} from "@angular/router";
+import {routerConfig} from "./router.config";
 
 import { AppComponent } from './app.component';
 import { MilestonesComponent } from './milestones/milestones.component';
+import { LearningExperienceComponent } from './learning-experience/learning-experience.component';
 
 // Must export the config
 export const firebaseConfig = {
@@ -28,13 +31,15 @@ const myFirebaseAuthConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    MilestonesComponent
+    MilestonesComponent,
+    LearningExperienceComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    RouterModule.forRoot(routerConfig),
     FlexLayoutModule.forRoot(),
     MaterialModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig) 
