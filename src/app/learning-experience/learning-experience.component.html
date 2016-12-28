@@ -16,52 +16,50 @@
 
 
 <md-card>
-   <md-card-subtitle></md-card-subtitle>
-   <md-card-title>learningExperiences</md-card-title>   
+   <md-card-subtitle>Create</md-card-subtitle>
+   <md-card-title>Learning Experiences</md-card-title>   
    <md-card-content>
 	   <form #learningexperienceform (submit)="
-      learningExperiences.push({ learningexperience.form.value }); 
+      learningExperiences.push(learningexperience.form.value); 
       learningexperienceform.reset();">
 
-            <md-input-container style="width: 100%">
+         <md-input-container style="width: 100%">
             <input md-input placeholder="Title">
-            </md-input-container>
+         </md-input-container>
 
-             <md-input-container style="width:100%">
-                <input type="date" md-input placeholder="Expected Finishing Date">
-             </md-input-container>
+         <md-input-container style="width:100%">
+            <input type="date" md-input placeholder="Expected Finishing Date">
+         </md-input-container>
           
-            <br>
+         <md-input-container style="width: 100%">
+            <textarea  md-input placeholder="Learning Intentions" ></textarea>
+         </md-input-container>
 
-            
-
-            <md-input-container style="width: 100%">
-              <textarea  md-input placeholder="Learning Intentions" ></textarea>
-            </md-input-container>
-            <md-input-container style="width: 100%">
+         <md-input-container style="width: 100%">
               <textarea md-input placeholder="Description" ></textarea>
-            </md-input-container>
+         </md-input-container>
 
 
-            <table style="width: 100%" cellspacing="0"><tr>
-               <td><md-input-container style="width: 100%">
-                 <input md-input placeholder="Subject">
-               </md-input-container></td>
-               <td><md-input-container style="width: 100%">
-                 <input md-input placeholder="Level">
-               </md-input-container></td>
-             </tr></table>
+         <table style="width: 100%" cellspacing="0"><tr>
+            <td><md-input-container style="width: 100%">
+              <input md-input placeholder="Subject">
+            </md-input-container></td>
+            <td><md-input-container style="width: 100%">
+              <input md-input placeholder="Level">
+            </md-input-container></td>
+          </tr></table>
 
-             <md-button-toggle-group>
-                 <md-button-toggle value="To be Completed" checked='true'>To be Completed</md-button-toggle>
-                 <md-button-toggle value="To be Assessed">To be Assessed</md-button-toggle>
-                 <md-button-toggle value="Completed">Completed</md-button-toggle>
-             </md-button-toggle-group>
+             
+        <!--  <md-button-toggle-group>
+            <md-button-toggle value="To be Completed" checked='true'>To be Completed</md-button-toggle>
+            <md-button-toggle value="To be Assessed">To be Assessed</md-button-toggle>
+            <md-button-toggle value="Completed">Completed</md-button-toggle>
+         </md-button-toggle-group> -->
 
-            
-
-
-
+     
+         
+         <button md-raised-button color="primary">Create</button>
+        
 
 	   </form>       
    </md-card-content>
