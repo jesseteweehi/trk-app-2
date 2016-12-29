@@ -1,47 +1,58 @@
-{{id}}
+<button routerLink="/learningexperiences" class="fixedbutton" md-fab>
+    <md-icon  class="md-24">chevron_left</md-icon>
+</button>
 
 
-<md-card class='highlight'>
+<!-- <md-card class='highlight'>
  <h1>{{ (learningExperience | async)?.name }}</h1>
-</md-card>
+</md-card> -->
 
 <div class="container">
   <div class="flexy" *ngFor="let milestone of milestones | async"><md-card>
   <!--  <md-card-subtitle>Subtitle first</md-card-subtitle> -->
    <md-card-title>{{ milestone.name }}</md-card-title> 
    <md-card-content>
-      <md-list-item  *ngFor="let todo of milestone.stream | async">
+      <md-card class="md-card-flat" *ngFor="let todo of milestone.stream | async">
+      
             
                 <p md-line>
                   <span class="highlight"> Message </span>
                   <span> {{todo.text}} </span>
                 </p>
-                <hr>  
-      </md-list-item>       
+                
+     
+      </md-card>       
    </md-card-content>
    <md-card-actions>
         
    </md-card-actions>
 </md-card>
 
-<md-card class="highlight">
+<md-card class='highlight'>
+  <md-card-content>
 
-   		    <form #streamForm (submit)="newComment( milestone.todos, milestone.stream,{ text:newTodo.value}); streamForm.reset()">
-   		    			
-   		    			 
-   		    				  <md-input #newTodo md-input placeholder="Add Comment" style="width:100%"></md-input>
-   		    			  
-   		    		
-   		    </form>
-
-   		    <form (submit)="newResource( milestone.resources, milestone.stream,{ text:resource.value})">
-   		    			
-   		    			 
-   		    				  <md-input #resource md-input placeholder="Add Resource" style="width:100%"></md-input>
-   		    			  
-   		    		
-   		    </form>
-
+        <md-tab-group class="tab-form">
+        <md-tab label="Create Comment">
+             <form #streamForm (submit)="newComment( milestone.todos, milestone.stream,{ text:newTodo.value}); streamForm.reset()">
+                  
+                   
+                      <md-input #newTodo md-input placeholder="Add Comment" style="width:100%"></md-input>
+                    
+                
+             </form> 
+        </md-tab>
+        <md-tab label="Create Resource">
+            <form (submit)="newResource( milestone.resources, milestone.stream,{ text:resource.value})">
+                  
+                   
+                      <md-input #resource md-input placeholder="Add Resource" style="width:100%"></md-input>
+                    
+                
+            </form>
+        
+        </md-tab>
+        <md-tab label="Create Assessment">
+        
           <form (submit)="newMarking( milestone.marking, milestone.stream, { text:marking.value})">
             
                 
@@ -49,33 +60,36 @@
                     <md-input #marking md-input placeholder="Add Assessment" style="width:100%"></md-input>
                   
               
-          </form>  
-	
+          </form>
+
+        </md-tab>
+      </md-tab-group>
+  </md-card-content>
 </md-card>
+
 </div>
 
 
 
-		 
 
-
-
-
+<div>
 <md-card>
    <md-card-subtitle>Learning Experience</md-card-subtitle>
    <md-card-title>Create Milestone</md-card-title>   
    <md-card-content>
-	   <form (submit)="milestones.push({
-		   	name:newPerson.value
-		   })">
-		   	<input #newPerson>
-		   	<label for="newPerson">Add Milestone</label> 
-	   </form>       
+      <form (submit)="milestones.push({
+         name:newPerson.value
+        })">
+         <input #newPerson>
+         <label for="newPerson">Add Milestone</label> 
+      </form> 
+	         
    </md-card-content>
    <md-card-actions>
      
    </md-card-actions>
 </md-card>
+</div>
 
 
 
