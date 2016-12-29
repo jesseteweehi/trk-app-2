@@ -21,8 +21,6 @@
       </md-card-content>
       <md-card-actions align="end">
 
-      <!-- <button  md-raised-button>Milestones</button> -->
-
       <button  [routerLink]="le.$key" md-icon-button color="primary">
       <md-icon>forward</md-icon>
       </button>
@@ -30,9 +28,6 @@
       </md-card-actions> 
    </md-card>
 
-<!--      updateItem(key: string, newText: string) {
-    this.items.update(key, { text: newText });
-  } -->
 
    <md-card style="width:700px" class="highlight" *ngIf="edited==le.$key">  
       <md-card-content>

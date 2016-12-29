@@ -12,7 +12,7 @@ import {routerConfig} from "./router.config";
 
 import { AppComponent } from './app.component';
 import { MilestonesComponent } from './milestones/milestones.component';
-import { LearningExperienceComponent, PizzaDialog } from './learning-experience/learning-experience.component';
+import { LearningExperienceComponent } from './learning-experience/learning-experience.component';
 
 // Must export the config
 export const firebaseConfig = {
@@ -30,13 +30,11 @@ const myFirebaseAuthConfig = {
 
 @NgModule({
   entryComponents: [
-  PizzaDialog
   ],
   declarations: [
     AppComponent,
     MilestonesComponent,
     LearningExperienceComponent,
-    PizzaDialog
   ],
   imports: [
     BrowserModule,
