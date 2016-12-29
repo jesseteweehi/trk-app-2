@@ -11,6 +11,8 @@ import { MdDialog, MdDialogRef } from '@angular/material'
   styleUrls: ['./learning-experience.component.css']
 })
 export class LearningExperienceComponent implements OnInit {
+  edited:string = ''
+
   learningExperiences:Observable<any[]>;
 
   learningExperiencesobject: FirebaseObjectObservable<any>;
@@ -36,6 +38,14 @@ export class LearningExperienceComponent implements OnInit {
 
   delete(le, data: string) {
     le.remove(data);
+  }
+
+  edit(key:string) {
+    this.edited=key
+  }
+
+  editFinished() {
+    this.edited=''
   }
 
   openDialog() {
