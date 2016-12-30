@@ -1,3 +1,13 @@
+.fixedbutton {
+	position: fixed;
+	top: 20px;
+    left: 20px;
+}
+
+md-input {
+	margin-top: 10px;
+}
+
 .highlight {
 	background-color: #FCFCFC;
 	margin-bottom: 50px;
@@ -9,27 +19,11 @@ md-card, .middle {
 }
 
 md-card-title {
-	border-bottom: grey;
+	border-bottom: #cccccc;
 	border-bottom-style: solid;
-    border-bottom-width: 10px;
+    border-bottom-width: 2px;
 }
 
-.fixedbutton {
-	position: fixed;
-	top: 20px;
-    left: 20px;
-}
-
-/*.fixed {
-	position: fixed;
-	bottom: 5px;
-	background: white;
-	opacity: 1;
-}*/
-
-md-input {
-	margin-top: 10px;
-}
 
 .tab-form {
 	position: relative;
@@ -37,8 +31,60 @@ md-input {
 	top: -25px;
 }
 
-.comment-card {
-	box-shadow-bottom: none;
-	box-shadow-left: none;
 
+.md-card-flat {
+	background-color: #FCFCFC;
+	margin-bottom: 8px;
+	float: right;
+}
+
+/*.comment {
+	width: 500px;
+}
+
+.comment md-card-title{
+    background: #f2f2f2;
+	
+    padding: 3px;
+    margin: -24px;
+}
+
+.comment md-card-title span{
+    position: relative;
+    left: 20px;
+}
+
+.comment-arrow-left {
+  content: '';
+  position: relative;
+  bottom: 0px;
+  right: 30px;
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent; 
+  
+  border-right:10px solid #f2f2f2; 
+}*/
+
+.comment {
+	width: 525px;
+	border-left: solid 5px #FCFCFC;
+
+}
+
+.resource {
+ 	width: 525px;
+ 	border-left: solid 5px #D1C4E9;
+
+}
+
+.marking {
+	width: 550px;
+	border-left: solid 5px #673AB7;	
+
+}
+
+.stream-head {
+	font-size: 17px;
 }

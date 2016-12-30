@@ -9,19 +9,48 @@
 
 <div class="container">
   <div class="flexy" *ngFor="let milestone of milestones | async"><md-card>
-  <!--  <md-card-subtitle>Subtitle first</md-card-subtitle> -->
+   <md-card-subtitle>Subtitle first</md-card-subtitle>
    <md-card-title>{{ milestone.name }}</md-card-title> 
-   <md-card-content>
-      <md-card class="md-card-flat" *ngFor="let todo of milestone.stream | async">
-      
-            
-                <p md-line>
-                  <span class="highlight"> Message </span>
-                  <span> {{todo.text}} </span>
-                </p>
-                
+   <md-card-content >
+
+   <div *ngFor="let todo of milestone.stream | async">
      
-      </md-card>       
+
+      <md-card *ngIf="todo.type=='comment'" class="md-card-flat comment">
+        <md-card-title>
+          <span class="stream-head">{{todo.type}}</span>  
+        </md-card-title>
+
+        <div class="comment-arrow-left"></div>
+
+        <md-card-content style="padding-top: 10px">{{todo.text}} </md-card-content>
+      </md-card>
+
+
+      <md-card *ngIf="todo.type=='resource'" class="md-card-flat resource">
+        <md-card-title>
+          <span class="stream-head">{{todo.type}}</span>  
+        </md-card-title>
+
+        
+
+        <md-card-content style="padding-top: 10px">{{todo.text}} </md-card-content>
+      </md-card>
+
+      <md-card *ngIf="todo.type=='marking'" class="md-card-flat marking">
+        <md-card-title>
+          <span class="stream-head">{{todo.type}}</span>  
+        </md-card-title>
+
+       <!--  <div class="arrow-left"></div> -->
+
+        <md-card-content style="padding-top: 10px">{{todo.text}} </md-card-content>
+      </md-card>
+    
+    </div> 
+
+      <div style="clear: right;"></div>
+
    </md-card-content>
    <md-card-actions>
         
@@ -33,7 +62,7 @@
 
         <md-tab-group class="tab-form">
         <md-tab label="Create Comment">
-             <form #streamForm (submit)="newComment( milestone.todos, milestone.stream,{ text:newTodo.value}); streamForm.reset()">
+             <form #streamForm (submit)="newComment( milestone.todos, milestone.stream,{ type:'comment', text:newTodo.value}); streamForm.reset()">
                   
                    
                       <md-input #newTodo md-input placeholder="Add Comment" style="width:100%"></md-input>
@@ -42,7 +71,7 @@
              </form> 
         </md-tab>
         <md-tab label="Create Resource">
-            <form (submit)="newResource( milestone.resources, milestone.stream,{ text:resource.value})">
+            <form (submit)="newResource( milestone.resources, milestone.stream,{ type:'resource', text:resource.value})">
                   
                    
                       <md-input #resource md-input placeholder="Add Resource" style="width:100%"></md-input>
@@ -53,7 +82,7 @@
         </md-tab>
         <md-tab label="Create Assessment">
         
-          <form (submit)="newMarking( milestone.marking, milestone.stream, { text:marking.value})">
+          <form (submit)="newMarking( milestone.marking, milestone.stream, { type: 'marking', text:marking.value})">
             
                 
                  
