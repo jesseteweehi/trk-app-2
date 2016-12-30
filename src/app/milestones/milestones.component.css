@@ -88,3 +88,62 @@ md-card-title {
 .stream-head {
 	font-size: 17px;
 }
+
+.comment md-card-title {
+	border-top: #cccccc;
+	border-top-style: solid;
+    border-top-width: 2px;
+    border-bottom: none;
+}
+
+
+.comment md-card-subtitle b {
+ /* background: #FFFAD1;*/
+  color: #757575;
+  font-size: 9px;
+  padding: 5px;
+  font-weight: 700;
+/*  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;*/
+  text-transform: uppercase;
+
+}
+
+.resource md-card-subtitle b {
+  background: #D1C4E9;
+  color: #FFF;
+  font-size: 9px;
+  padding: 5px;
+  font-weight: 700;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  text-transform: uppercase;
+
+}
+
+.marking md-card-subtitle b {
+  background: #673AB7;
+  color: #FFF;
+  font-size: 9px;
+  padding: 5px;
+  font-weight: 700;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+/*.comment-box .comment-name.by-author:after {
+  content: 'autor';
+  background: #03658c;
+  color: #FFF;
+  font-size: 12px;
+  padding: 3px 5px;
+  font-weight: 700;
+  margin-left: 10px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}*/

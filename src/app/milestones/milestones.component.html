@@ -4,47 +4,52 @@
 
 
 <!-- <md-card class='highlight'>
- <h1>{{ (learningExperience | async)?.name }}</h1>
+ <h1></h1>
 </md-card> -->
 
 <div class="container">
   <div class="flexy" *ngFor="let milestone of milestones | async"><md-card>
-   <md-card-subtitle>Subtitle first</md-card-subtitle>
-   <md-card-title>{{ milestone.name }}</md-card-title> 
+   <md-card-subtitle>{{ (learningExperience | async)?.title }}</md-card-subtitle>
+   <md-card-title>{{ milestone.title }} | {{milestone.data | date }}</md-card-title> 
    <md-card-content >
+
+   <p>{{milestone.description}}</p>
 
    <div *ngFor="let todo of milestone.stream | async">
      
 
       <md-card *ngIf="todo.type=='comment'" class="md-card-flat comment">
-        <md-card-title>
+        <md-card-subtitle><b>Feedback</b></md-card-subtitle>
+        <!-- <md-card-title>
           <span class="stream-head">{{todo.type}}</span>  
-        </md-card-title>
+        </md-card-title> -->
 
         <div class="comment-arrow-left"></div>
 
-        <md-card-content style="padding-top: 10px">{{todo.text}} </md-card-content>
+        <md-card-content>{{todo.text}} </md-card-content>
       </md-card>
 
 
       <md-card *ngIf="todo.type=='resource'" class="md-card-flat resource">
+        <md-card-subtitle><b>{{todo.type}}</b></md-card-subtitle>
         <md-card-title>
           <span class="stream-head">{{todo.type}}</span>  
         </md-card-title>
 
         
 
-        <md-card-content style="padding-top: 10px">{{todo.text}} </md-card-content>
+        <md-card-content>{{todo.text}} </md-card-content>
       </md-card>
 
       <md-card *ngIf="todo.type=='marking'" class="md-card-flat marking">
+        <md-card-subtitle><b>{{todo.type}}</b></md-card-subtitle>
         <md-card-title>
           <span class="stream-head">{{todo.type}}</span>  
         </md-card-title>
 
        <!--  <div class="arrow-left"></div> -->
 
-        <md-card-content style="padding-top: 10px">{{todo.text}} </md-card-content>
+        <md-card-content>{{todo.text}} </md-card-content>
       </md-card>
     
     </div> 
@@ -103,14 +108,26 @@
 
 <div>
 <md-card>
-   <md-card-subtitle>Learning Experience</md-card-subtitle>
-   <md-card-title>Create Milestone</md-card-title>   
+   <md-card-subtitle>{{ (learningExperience | async)?.title }}</md-card-subtitle>
+   <md-card-title>New Milestone</md-card-title>   
    <md-card-content>
-      <form (submit)="milestones.push({
-         name:newPerson.value
-        })">
-         <input #newPerson>
-         <label for="newPerson">Add Milestone</label> 
+      <form novalidate #milestoneform="ngForm" (submit)="milestones.push(milestoneform.value); milestoneform.reset();">
+         
+        <md-input-container style="width: 100%">
+           <input ngModel name="title" md-input placeholder="Title">
+        </md-input-container>
+
+
+         <md-input-container style="width:100%">
+            <input ngModel name="date" type="date" md-input placeholder="Expected Finishing Date">
+         </md-input-container>
+
+         <md-input-container style="width: 100%">
+              <textarea ngModel name="description" md-input placeholder="Description" ></textarea>
+         </md-input-container>
+
+         <button type="submit" md-raised-button color="primary">Create</button>
+
       </form> 
 	         
    </md-card-content>
@@ -120,6 +137,36 @@
 </md-card>
 </div>
 
+
+<!-- <form novalidate #learningexperienceform="ngForm" (submit)="
+         learningExperiences.push(learningexperienceform.value); 
+         learningexperienceform.reset();">
+
+            <md-input-container style="width: 100%">
+               <input ngModel name="title" md-input placeholder="Title">
+            </md-input-container>
+
+            <md-input-container style="width:100%">
+               <input ngModel name="date" type="date" md-input placeholder="Expected Finishing Date">
+            </md-input-container>
+
+
+            <md-input-container style="width: 100%">
+                 <textarea ngModel name="description" md-input placeholder="Description" ></textarea>
+            </md-input-container>
+
+
+            <table style="width: 100%" cellspacing="0"><tr>
+               <td><md-input-container style="width: 100%">
+                 <input ngModel name="subject" md-input placeholder="Subject">
+               </md-input-container></td>
+               <td><md-input-container style="width: 100%">
+                 <input ngModel name="level" md-input placeholder="Level">
+               </md-input-container></td>
+             </tr></table>
+            
+            <button type="submit" md-raised-button color="primary">Create</button>
+       </form>   -->     
 
 
 
