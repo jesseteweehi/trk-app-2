@@ -20,25 +20,16 @@
 
       <md-card *ngIf="todo.type=='comment'" class="md-card-flat comment">
         <md-card-subtitle><b>Feedback</b></md-card-subtitle>
-        <!-- <md-card-title>
-          <span class="stream-head">{{todo.type}}</span>  
-        </md-card-title> -->
-
-        <div class="comment-arrow-left"></div>
-
+      
         <md-card-content>{{todo.text}} </md-card-content>
       </md-card>
 
 
       <md-card *ngIf="todo.type=='resource'" class="md-card-flat resource">
         <md-card-subtitle><b>{{todo.type}}</b></md-card-subtitle>
-        <md-card-title>
-          <span class="stream-head">{{todo.type}}</span>  
-        </md-card-title>
-
-        
-
-        <md-card-content>{{todo.text}} </md-card-content>
+          <md-card-content> 
+            <a href="{{todo.url}}">{{todo.description}}</a>
+          </md-card-content>
       </md-card>
 
       <md-card *ngIf="todo.type=='marking'" class="md-card-flat marking">
@@ -76,12 +67,25 @@
              </form> 
         </md-tab>
         <md-tab label="Create Resource">
-            <form (submit)="newResource( milestone.resources, milestone.stream,{ type:'resource', text:resource.value})">
+            <form #resourceForm="ngForm" (submit)="newResource( milestone.resources, milestone.stream,resourceForm.value)">
+
+             <!--  <md-input-container style="width: 100%">
+                 <input ngModel name="title" md-input placeholder="Title">
+              </md-input-container> -->
+
+            
+              <md-input-container style="width: 100%">
+                   <textarea ngModel name="description" md-input placeholder="Resource Description" ></textarea>
+              </md-input-container>
+
+              <md-input-container style="width:100%">
+                 <input ngModel name="url"  md-input placeholder="Resource Url">
+              </md-input-container>
+
+
+              <button type="submit" md-raised-button color="primary">Create Resource</button>
                   
-                   
-                      <md-input #resource md-input placeholder="Add Resource" style="width:100%"></md-input>
-                    
-                
+                          
             </form>
         
         </md-tab>

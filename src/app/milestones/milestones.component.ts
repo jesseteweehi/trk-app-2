@@ -53,6 +53,8 @@ export class MilestonesComponent implements OnInit {
   }
 
   newResource(resource, stream, form) {
+    form.type = 'resource'
+    console.log(form)
     resource.push(form)
     stream.push(form)
     

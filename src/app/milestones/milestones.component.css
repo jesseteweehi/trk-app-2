@@ -4,7 +4,7 @@
     left: 20px;
 }
 
-md-input {
+md-input, md-input-container {
 	margin-top: 10px;
 }
 
@@ -76,7 +76,10 @@ md-card-title {
 .resource {
  	width: 525px;
  	border-left: solid 5px #D1C4E9;
+}
 
+.resource md-card-title {
+	border-bottom: none;
 }
 
 .marking {
