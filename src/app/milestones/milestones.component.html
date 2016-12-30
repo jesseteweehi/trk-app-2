@@ -26,7 +26,26 @@
 
         <div class="comment-arrow-left"></div>
 
-        <md-card-content>{{todo.text}} </md-card-content>
+        <md-card-content>{{todo.text}} 
+
+        <!--  <md-card class="md-card-flat comment" *ngFor="let todo of milestone.stream.comments | async">
+            <md-card-content>{{todo.text}}</md-card-content>
+
+            <form (submit)="milestone.stream.comments.push({ text:newTodo.value })">
+                  
+                   
+                      <md-input #newTodo md-input placeholder="Add Comment" style="width:100%">
+                      </md-input>
+                                    
+            </form>
+          
+         </md-card>  -->
+
+        </md-card-content>
+
+        
+      
+
       </md-card>
 
 

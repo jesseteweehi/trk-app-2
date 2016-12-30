@@ -14,7 +14,9 @@ export class MilestonesComponent implements OnInit {
   id : string;
 
   milestones:Observable<any[]>;
-  learningExperience: FirebaseObjectObservable<any>
+  // milestonestream:Observable<any[]>
+  learningExperience: FirebaseObjectObservable<any>;
+
   
   
   constructor(public af:AngularFire, ar: ActivatedRoute) {
@@ -28,16 +30,24 @@ export class MilestonesComponent implements OnInit {
   	.map((milestones) => {
   		return milestones.map((milestone) => 
   		{
-  			milestone.todos = af.database.list(`/todos/${milestone.$key}`)
-  			milestone.resources = af.database.list(`/resources/${milestone.$key}`)
-        milestone.marking = af.database.list(`/marking/${milestone.$key}`)
+  			// milestone.todos = af.database.list(`/todos/${milestone.$key}`)
+  			// milestone.resources = af.database.list(`/resources/${milestone.$key}`)
+     //    milestone.marking = af.database.list(`/marking/${milestone.$key}`)
         milestone.stream = af.database.list(`/stream/${milestone.$key}`)
-  			return milestone
+        .map((comments) => {
+          return milestone.stream.map((comment) =>
+        {
+          milestone.stream.comment = af.database.list(`/nestedcomments/${comment.$key}`)
+          return milestone.stream   
+        });
+      });
+        return milestone
+    }); 
 
-  		})
-  	});
-  
-  }
+  });
+ 
+ 
+}
 
   ngOnInit() {
   }
@@ -48,18 +58,18 @@ export class MilestonesComponent implements OnInit {
   }
 
   newComment(comment, stream, form) {
-    comment.push(form)
+    // comment.push(form)
     stream.push(form)
   }
 
   newResource(resource, stream, form) {
-    resource.push(form)
+    // resource.push(form)
     stream.push(form)
     
   }
 
   newMarking(marking, stream, form) {
-    marking.push(form)
+    // marking.push(form)
     stream.push(form)
     
   }
