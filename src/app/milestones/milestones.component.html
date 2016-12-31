@@ -3,19 +3,25 @@
 </button>
 
 
-<!-- <md-card class='highlight'>
- <h1></h1>
-</md-card> -->
+<!-- milestone Read -->
 
 <div class="container">
+{{ (learningExperience | async)?.key }}
+
   <div class="flexy" *ngFor="let milestone of milestones | async"><md-card>
    <md-card-subtitle>{{ (learningExperience | async)?.title }}</md-card-subtitle>
    <md-card-title>{{ milestone.title }} | {{milestone.data | date }}</md-card-title> 
    <md-card-content >
 
+   {{ milestone.$key }}
+
    <p>{{milestone.description}}</p>
 
+   <!-- milestone.stream Read -->
+
    <div *ngFor="let todo of milestone.stream | async">
+
+   {{ todo.$key }}
      
 
       <md-card *ngIf="todo.type=='comment'" class="md-card-flat comment">
@@ -52,6 +58,9 @@
         
    </md-card-actions>
 </md-card>
+
+<!-- New Information Section Form -->
+
 
 <md-card class='highlight'>
   <md-card-content>
@@ -108,7 +117,7 @@
 </div>
 
 
-
+<!-- New Milestone Form -->
 
 <div>
 <md-card>
@@ -142,35 +151,7 @@
 </div>
 
 
-<!-- <form novalidate #learningexperienceform="ngForm" (submit)="
-         learningExperiences.push(learningexperienceform.value); 
-         learningexperienceform.reset();">
-
-            <md-input-container style="width: 100%">
-               <input ngModel name="title" md-input placeholder="Title">
-            </md-input-container>
-
-            <md-input-container style="width:100%">
-               <input ngModel name="date" type="date" md-input placeholder="Expected Finishing Date">
-            </md-input-container>
-
-
-            <md-input-container style="width: 100%">
-                 <textarea ngModel name="description" md-input placeholder="Description" ></textarea>
-            </md-input-container>
-
-
-            <table style="width: 100%" cellspacing="0"><tr>
-               <td><md-input-container style="width: 100%">
-                 <input ngModel name="subject" md-input placeholder="Subject">
-               </md-input-container></td>
-               <td><md-input-container style="width: 100%">
-                 <input ngModel name="level" md-input placeholder="Level">
-               </md-input-container></td>
-             </tr></table>
-            
-            <button type="submit" md-raised-button color="primary">Create</button>
-       </form>   -->     
+    
 
 
 
