@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { AngularFire, FirebaseRef } from "angularfire2";
 import { Observable, Subject} from "rxjs/Rx";
 import { LearningExperienceModel } from './learning-experience'
@@ -6,17 +6,16 @@ import { LearningExperienceModel } from './learning-experience'
 @Injectable()
 export class LearningExperienceService {
 
-  	constructor(private af:AngularFire, @Inject(FirebaseRef) fb) { 
+  	sdkDb:any;
 
-  		this.sdkDb = fb.database().ref();
-  	}
+    constructor(private af:AngularFire, @Inject(FirebaseRef) fb) {
+
+        this.sdkDb = fb.database().ref();
+
+    }
 
 
-
-
-
-
-	findAllLearningExperience(): Observable<LearningExperienceModel[]> {
+	findAllLearningExperiences(): Observable<LearningExperienceModel[]> {
 	  	
 	  	return this.af.database.list('learningexperiences')
 	  		.do(console.log)
@@ -28,7 +27,7 @@ export class LearningExperienceService {
   		
   		const learningExperienceToSave = Object.assign({}, LearningExperienceModel);
 
-  		const newLearningExperienceKey = this.sdkDB.child('learningexperiences').push().key;
+  		const newLearningExperienceKey = this.sdkDb.child('learningexperiences').push().key;
 
   		let dataToSave = {};
 
