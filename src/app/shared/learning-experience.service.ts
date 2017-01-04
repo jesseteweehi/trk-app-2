@@ -31,7 +31,7 @@ export class LearningExperienceService {
 
   		let dataToSave = {};
 
-  		dataToSave[`learningexperiences${newLearningExperienceKey}`] = learningExperienceToSave;
+  		dataToSave[`learningexperiences/${newLearningExperienceKey}`] = learningExperienceToSave;
 
   		return this.firebaseUpdate(dataToSave)
 
