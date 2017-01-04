@@ -42,7 +42,7 @@ md-card-subtitle {
 md-card-subtitle button {
 	position: relative;
 	left: 15px;
-	bottom: 20px;
+	bottom: 10px;
 	float: right;
 }
 

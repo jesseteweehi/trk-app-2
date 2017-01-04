@@ -2,13 +2,15 @@ import { Injectable, Inject } from '@angular/core';
 import { AngularFire, FirebaseRef } from "angularfire2";
 import { Observable, Subject} from "rxjs/Rx";
 import { LearningExperienceModel } from './learning-experience'
+import { firebaseConfig } from '../app.module'
+import {Http} from "@angular/http";
 
 @Injectable()
 export class LearningExperienceService {
 
   	sdkDb:any;
 
-    constructor(private af:AngularFire, @Inject(FirebaseRef) fb) {
+    constructor(private af:AngularFire, @Inject(FirebaseRef) fb, private http:Http) {
 
         this.sdkDb = fb.database().ref();
 
@@ -56,6 +58,13 @@ export class LearningExperienceService {
             );
 
         return subject.asObservable();
+    }
+
+    deleteLearningExperience(learningExperienceID:string): Observable<any> {
+
+        const url = firebaseConfig.databaseURL + '/learningexperiences/' + learningExperienceID + '.json';
+
+        return this.http.delete(url);
     }
 
 

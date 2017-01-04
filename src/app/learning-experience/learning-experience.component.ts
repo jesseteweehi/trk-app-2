@@ -44,4 +44,12 @@ export class LearningExperienceComponent implements OnInit {
 	  			);
 
 	}
+
+	delete(key) {
+        this.ls.deleteLearningExperience(key)
+            .subscribe(
+                () => alert('Lesson deleted'),
+                console.error
+            );
+    }
 }
