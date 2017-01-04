@@ -1,9 +1,11 @@
-<md-card>
+
       <md-menu #menu="mdMenu">
           <button md-menu-item> Edit </button>
-          <button md-menu-item"> Delete </button>
+          <button md-menu-item> Delete </button>
       </md-menu>
 
+<md-card *ngFor="let le of allLearningExperiences">
+        <!--  {{ le | json }} -->
 
       <md-card-subtitle>{{le.learningArea}} | Curriculum Level {{le.level}} 
          <button [mdMenuTriggerFor]="menu" md-icon-button color="primary">

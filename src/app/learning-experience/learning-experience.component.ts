@@ -1,20 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms'
 import { LearningExperienceService } from '../shared/learning-experience.service'
+import { LearningExperienceModel } from '../shared/learning-experience'
 
 @Component({
   selector: 'trk-learning-experience',
   templateUrl: './learning-experience.component.html',
   styleUrls: ['./learning-experience.component.css']
 })
+
 export class LearningExperienceComponent implements OnInit {
+	allLearningExperiences: LearningExperienceModel[];
 	form : FormGroup;
 
 	constructor(public fb: FormBuilder, private ls:LearningExperienceService ) { 
 	  	this.form = this.fb.group({
 	  		title: '',
-	  		date: '',
-	  		level: '',
+			date: '',
+	 		level: '',
 	  		learningArea: '',
 	  		description: '',
 	  		tags: ''
@@ -23,6 +26,11 @@ export class LearningExperienceComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.ls.findAllLearningExperiences()
+			.do(console.log)
+			.subscribe(
+				lexperiences => this.allLearningExperiences = lexperiences
+			);
 	}
 
 	create(form) {
@@ -37,4 +45,3 @@ export class LearningExperienceComponent implements OnInit {
 
 	}
 }
-
