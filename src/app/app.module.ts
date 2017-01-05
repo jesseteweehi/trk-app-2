@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { LearningExperienceComponent } from './learning-experience/learning-experience.component';
 
 import { LearningExperienceService } from './shared/learning-experience.service';
+import { MilestoneComponent } from './milestone/milestone.component';
 
 // Must export the config
 export const firebaseConfig = {
@@ -30,7 +31,8 @@ const myFirebaseAuthConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    LearningExperienceComponent
+    LearningExperienceComponent,
+    MilestoneComponent
   ],
   imports: [
     BrowserModule,

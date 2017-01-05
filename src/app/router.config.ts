@@ -4,8 +4,13 @@ import {LearningExperienceComponent} from "./learning-experience/learning-experi
 
 export const routerConfig : Route[] = [
     {
-        path:'home',
+        path:'learning-experiences',
         component: LearningExperienceComponent,
+        children: [
+            {
+                path: ':id',
+                component: MileStoneComponent,
+            }
     },
     {
         path: '',
