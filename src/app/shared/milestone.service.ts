@@ -18,7 +18,7 @@ export class MilestoneService {
 
     findMilestoneForLearningExperience(lExperienceKey: string): Observable<MilestoneModel[]> {
 	  	
-	  	return this.af.database.list(`milestone/${lExperienceKey}`)
+	  	return this.af.database.list(`milestones/${lExperienceKey}`)
 	  		.do(console.log)
 	  		.map(MilestoneModel.fromJsonList);
 
@@ -61,7 +61,7 @@ export class MilestoneService {
 
     deleteMilestone(learningExperienceID:string, MilestoneID:string): Observable<any> {
 
-        const url = firebaseConfig.databaseURL + '/milestones/' + learningExperienceID + MilestoneID + '.json';
+        const url = firebaseConfig.databaseURL + '/milestones/' + learningExperienceID +'/'+ MilestoneID + '.json';
 
         return this.http.delete(url);
     }

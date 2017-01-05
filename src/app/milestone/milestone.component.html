@@ -1,4 +1,21 @@
-<md-card *ngFor="let posts of milestones">
+<md-card *ngFor="let milestone of milestonesForLExperiences">
+  <md-card-subtitle></md-card-subtitle>
+  <md-card-title>
+    {{ milestone.title }}  <b>{{milestone.date | date }}</b>
+  </md-card-title> 
+  <md-card-content >
+    <p>{{milestone.description}}</p>
+  </md-card-content>
+  <md-card-actions>
+        
+  </md-card-actions>
+</md-card>
+
+
+
+
+
+<!-- <md-card *ngFor="let posts of milestones">
        
       <md-menu #menu="mdMenu">
           <button md-menu-item> Edit </button>
@@ -22,7 +39,7 @@
       </button>
            
       </md-card-actions> 
-</md-card>
+</md-card> -->
 
 
 
@@ -40,14 +57,6 @@
 	<md-input-container style="width:100%">
 	   <input type="date" formControlName="date" md-input placeholder="Expected Finishing Date">
 	</md-input-container>
-
-	<md-input-container style="width: 100%">
-     	<input type="number" formControlName="level" md-input placeholder="Curriculum Level">
-    </md-input-container>
-
-    <md-input-container style="width: 100%">
-     	<input formControlName="learningArea" md-input placeholder="Learning Area">
-    </md-input-container>
  
 	<md-input-container style="width: 100%">
 	     <textarea formControlName="description" md-input placeholder="Description"></textarea>
@@ -56,8 +65,6 @@
 	<md-input-container style="width: 100%">
 	     <input formControlName="tags" md-input placeholder="Tags">
 	</md-input-container>
-
-    
 
     
 
