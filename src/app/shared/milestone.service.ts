@@ -26,13 +26,13 @@ export class MilestoneService {
 
   	createMilestoneForLearningExperience(lExperienceKey: string , MilestoneModel:any): Observable<any> {
 
-  		const MilestoneToSave = Object.assign({}, MilestoneModel);
+  		const milestoneToSave = Object.assign({}, MilestoneModel);
 
   		const newMilestoneKey = this.sdkDb.child(`milestones/${lExperienceKey}`).push().key;
 
   		let dataToSave = {};
 
-  		dataToSave[`milestones/${lExperienceKey}/${newMilestoneKey}`] = MilestoneToSave
+  		dataToSave[`milestones/${lExperienceKey}/${newMilestoneKey}`] = milestoneToSave
 
   		return this.firebaseUpdate(dataToSave)
 
@@ -59,9 +59,9 @@ export class MilestoneService {
         return subject.asObservable();
     }
 
-    deleteMilestone(learningExperienceID:string, MilestoneID:string): Observable<any> {
+    deleteMilestone(learningExperienceID:string, milestoneID:string): Observable<any> {
 
-        const url = firebaseConfig.databaseURL + '/milestones/' + learningExperienceID +'/'+ MilestoneID + '.json';
+        const url = firebaseConfig.databaseURL + '/milestones/' + learningExperienceID +'/'+ milestoneID + '.json';
 
         return this.http.delete(url);
     }

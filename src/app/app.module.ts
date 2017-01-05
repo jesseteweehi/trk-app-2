@@ -15,6 +15,8 @@ import { MilestoneComponent } from './milestone/milestone.component';
 
 import { LearningExperienceService } from './shared/learning-experience.service';
 import { MilestoneService } from './shared/milestone.service';
+import { EmbedlyService } from './shared/embedly.service';
+
 
 
 // Must export the config
@@ -46,7 +48,7 @@ const myFirebaseAuthConfig = {
     MaterialModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig) 
   ],
-  providers: [LearningExperienceService, MilestoneService],
+  providers: [LearningExperienceService, MilestoneService, EmbedlyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
