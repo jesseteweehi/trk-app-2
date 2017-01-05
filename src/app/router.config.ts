@@ -5,21 +5,21 @@ import { MilestoneComponent } from './milestone/milestone.component';
 
 export const routerConfig : Route[] = [
     {
-        path:'learning-experiences',
-        component: LearningExperienceComponent,
-        children: [
-            {
-                path: ':id',
-                component: MilestoneComponent,
-            }]
-    },
-    {
         path: '',
-        redirectTo: 'learning-experiences',
+        redirectTo: 'learningexperiences',
         pathMatch: 'full'
     },
     {
-        path: '**',
-        redirectTo: 'learning-experiences'
+        path:'learningexperiences',
+        children:[
+            {
+                path: '',
+                component: LearningExperienceComponent,
+            },
+            {
+                path: ':id',
+                component: MilestoneComponent,
+            }
+        ]
     }
-];
+]
