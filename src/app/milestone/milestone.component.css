@@ -18,3 +18,10 @@ md-card-title b {
 	color: grey;
 	float: right;
 }
+
+md-card-subtitle button {
+	position: relative;
+	left: 15px;
+	bottom: 10px;
+	float: right;
+}
