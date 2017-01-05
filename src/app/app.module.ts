@@ -10,9 +10,12 @@ import {routerConfig} from "./router.config";
 
 import { AppComponent } from './app.component';
 import { LearningExperienceComponent } from './learning-experience/learning-experience.component';
+import { MilestoneComponent } from './milestone/milestone.component';
+
 
 import { LearningExperienceService } from './shared/learning-experience.service';
-import { MilestoneComponent } from './milestone/milestone.component';
+import { MilestoneService } from './shared/milestone.service';
+
 
 // Must export the config
 export const firebaseConfig = {
@@ -43,7 +46,7 @@ const myFirebaseAuthConfig = {
     MaterialModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig) 
   ],
-  providers: [LearningExperienceService],
+  providers: [LearningExperienceService, MilestoneService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
