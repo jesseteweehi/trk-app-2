@@ -1,5 +1,6 @@
 import {Route} from "@angular/router";
 import {LearningExperienceComponent} from "./learning-experience/learning-experience.component";
+import { MilestoneComponent } from './milestone/milestone.component';
 
 
 export const routerConfig : Route[] = [
@@ -9,16 +10,16 @@ export const routerConfig : Route[] = [
         children: [
             {
                 path: ':id',
-                component: MileStoneComponent,
-            }
+                component: MilestoneComponent,
+            }]
     },
     {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'learning-experiences',
         pathMatch: 'full'
     },
     {
         path: '**',
-        redirectTo: 'home'
+        redirectTo: 'learning-experiences'
     }
 ];
