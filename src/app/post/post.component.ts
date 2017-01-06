@@ -42,6 +42,14 @@ export class PostComponent implements OnInit {
   			posts => this.postsForMilestone = posts
   		);
 
+  }
+
+  deletePost(postkey) {
+    this.ps.deletePost(this.milestoneID, postkey)
+      .subscribe(
+                () => console.log('url Deleted'),
+                console.error
+            );
 
   }
 

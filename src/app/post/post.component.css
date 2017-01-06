@@ -1,3 +1,14 @@
+md-card-subtitle button {
+  float: right;
+  color: black;
+}
+
+md-card-title button {
+  float: right;
+  color: black;
+}
+
+
 .center {
   margin: auto;
 }

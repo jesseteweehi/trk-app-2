@@ -8,12 +8,20 @@
 
 <div *ngFor="let p of postsForMilestone">
 <md-card *ngIf="p.posttype==='comment'" class="md-card-flat post feedback">
-	<md-card-subtitle><b>Feedback | Comment</b></md-card-subtitle>
+	<md-card-subtitle><b>Feedback | Comment</b>
+      <button md-icon-button>
+        <md-icon>more_vert</md-icon>
+      </button>
+  </md-card-subtitle>
 	<md-card-content>{{p.description}}</md-card-content>
 </md-card>
 
 <md-card *ngIf="p.posttype==='resource'" class="md-card-flat post resource">
-  <md-card-title><b>{{p.posttype}}</b>  {{p.title}}</md-card-title>
+  <md-card-title><b>{{p.posttype}}</b>  {{p.title}}
+    <button md-icon-button>
+      <md-icon>more_vert</md-icon>
+    </button>
+  </md-card-title>
   <md-card-content>{{p.description}}
 
   <hr>

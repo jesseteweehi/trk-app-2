@@ -12,7 +12,7 @@ export class UrlComponent implements OnInit {
 	@Input() public postID : string;
 	public urlsForPost: UrlModel[];
 	public form: FormGroup;
-  public openstring = ''
+  public openstring : string = ''
 
   	constructor(private us: UrlService, public fb: FormBuilder) {
   		this.form = this.fb.group({
@@ -45,8 +45,16 @@ export class UrlComponent implements OnInit {
     }
 
     close(){
-      this.openstring = 'false';     
+      this.openstring = '';     
     }
     
+    deleteurl(urlkey){
+      this.us.deleteUrl(this.postID, urlkey)
+        .subscribe(
+                () => console.log('url Deleted'),
+                console.error
+            );
+
+    }
 
 }

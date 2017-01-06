@@ -1,15 +1,24 @@
-<md-list>
+<md-list dense>
   <md-list-item *ngFor="let url of urlsForPost">
     <h3 md-line> {{url.title}} </h3>
     <p md-line>
-      <span><a href="{{url.link}}">{{url.link}}</a> </span>
+      <span><a href="{{url.url}}" target="_blank">{{url.url}}</a></span>
     </p>
+    <button md-icon-button (click)="deleteurl(url.$key)">
+      <md-icon style="font-size: 15px">delete</md-icon>
+    </button>
   </md-list-item>
 </md-list>
 
 <button *ngIf="openstring!==postID" md-icon-button (click)="open()">
 	<md-icon>add</md-icon>
 </button>
+
+<button *ngIf="openstring===postID" md-icon-button (click)="close()">
+  <md-icon>close</md-icon>
+</button>
+
+<div style="clear: right"></div>
 
 <form *ngIf="openstring===postID" novalidate [formGroup]="form" (submit)="create(form)">
 
@@ -26,7 +35,7 @@
 
     <button type="submit" md-raised-button color="primary">Create</button>
 
-    <button md-raised-button color="primary" (click)="close()">Close</button>
+    
 
 </form> 
 
