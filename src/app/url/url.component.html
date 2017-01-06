@@ -1,9 +1,3 @@
-<button style="float:right;" md-icon-button>
-	<md-icon>add</md-icon>
-</button>
-
-
-   
 <md-list>
   <md-list-item *ngFor="let url of urlsForPost">
     <h3 md-line> {{url.title}} </h3>
@@ -12,3 +6,35 @@
     </p>
   </md-list-item>
 </md-list>
+
+<button md-icon-button (click)="open()">
+	<md-icon>add</md-icon>
+</button>
+
+<form *ngIf="openbool" novalidate [formGroup]="form" (submit)="create(form)">
+
+
+      <md-input-container style="width: 100%">
+         <input  formControlName="title" md-input placeholder="Title">
+      </md-input-container>
+
+      
+      <md-input-container style="width: 100%">
+           <input formControlName="url" md-input placeholder="Url Link">
+      </md-input-container>
+        
+
+    <button type="submit" md-raised-button color="primary">Create</button>
+
+    <button md-raised-button color="primary" (click)="close()">Close</button>
+
+</form> 
+
+
+
+
+
+
+
+<!-- <button class="filter-btn" (click)="filter.hidden = !filter.hidden">Category</button>
+<filterbox #filter [elements]="filters.categories></filterbox> -->
