@@ -14,41 +14,95 @@
 <div style="clear: right"></div>
 
 
+
+
+
+
 <md-card class="md-card-flat">
-	<md-button-toggle-group #postbutton >
-	    <md-button-toggle value="comment" >Comment</md-button-toggle>
-	    <md-button-toggle value="resource">Resource</md-button-toggle>
-	    <md-button-toggle value="work">Work</md-button-toggle>
-	</md-button-toggle-group>
-</md-card>
+
+<md-tab-group>
+  <md-tab label="Feedback">   
+    <form novalidate [formGroup]="form" (submit)="create(form)">
+
+    	
 
 
-<md-card *ngIf="postbutton.value===comment" class="md-card-flat">
+    	<md-input-container style="width: 100%">
+    	   <input  formControlName="posttype" md-input placeholder="Post Type">
+    	</md-input-container>
+
+    	<md-input-container style="width: 100%">
+    	   <input  formControlName="title" md-input placeholder="Title">
+    	</md-input-container>
+
+    	
+    	<md-input-container style="width: 100%">
+    	     <textarea formControlName="description" md-input placeholder="Description"></textarea>
+    	</md-input-container>
+        
+
+    <button type="submit" md-raised-button color="primary">Post</button>
+    </form> 
+
+  </md-tab>
+  <md-tab label="Resource">
+   
+    <form novalidate [formGroup]="form" (submit)="create(form)">
 
 
+    	<md-input-container style="width: 100%">
+    	   <input  formControlName="posttype" md-input placeholder="Post Type">
+    	</md-input-container>
 
-<form novalidate [formGroup]="form" (submit)="create(form)">
+    	<md-input-container style="width: 100%">
+    	   <input  formControlName="title" md-input placeholder="Title">
+    	</md-input-container>
 
-	
+    	
+    	<md-input-container style="width: 100%">
+    	     <textarea formControlName="description" md-input placeholder="Description"></textarea>
+    	</md-input-container>
+
+    	<md-input-container style="width: 100%">
+    	     <textarea formControlName="url" md-input placeholder="Resource Link"></textarea>
+    	</md-input-container>
+        
+
+    <button type="submit" md-raised-button color="primary">Post</button>
+    </form> 
+
+  </md-tab>
+  <md-tab label="Work">
+   
+    <form novalidate [formGroup]="form" (submit)="create(form)">
+
+    	
 
 
-	<md-input-container style="width: 100%">
-	   <input  formControlName="posttype" md-input placeholder="Post Type">
-	</md-input-container>
+    	<md-input-container style="width: 100%">
+    	   <input  formControlName="posttype" md-input placeholder="Post Type">
+    	</md-input-container>
 
-	<md-input-container style="width: 100%">
-	   <input  formControlName="title" md-input placeholder="Title">
-	</md-input-container>
+    	<md-input-container style="width: 100%">
+    	   <input  formControlName="title" md-input placeholder="Title">
+    	</md-input-container>
 
-	
-	<md-input-container style="width: 100%">
-	     <textarea formControlName="description" md-input placeholder="Description"></textarea>
-	</md-input-container>
-    
+    	
+    	<md-input-container style="width: 100%">
+    	     <textarea formControlName="description" md-input placeholder="Description"></textarea>
+    	</md-input-container>
 
-<button type="submit" md-raised-button color="primary">Create</button>
+    	<md-input-container style="width: 100%">
+    	     <input formControlName="url" md-input placeholder="Link to you work">
+    	</md-input-container>
+        
 
+    <button type="submit" md-raised-button color="primary">Post</button>
+    </form> 
 
-</form> 
+  </md-tab>
+
+</md-tab-group>
+
 
 </md-card>

@@ -18,6 +18,10 @@
 
 }
 
+form {
+  margin-top: 5px;
+}
+
 /*.comment {
 	width: 525px;
 	border-left: solid 5px #FCFCFC;

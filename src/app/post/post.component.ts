@@ -17,8 +17,9 @@ export class PostComponent implements OnInit {
   	this.form = this.fb.group({
   	  posttype: '',	
   	  title: '',
-  	  description: ''
-  	  });
+  	  description: '',
+  	  url: '' 
+  	});
 
   	}
 
