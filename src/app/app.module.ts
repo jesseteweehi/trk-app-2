@@ -19,9 +19,7 @@ import { MilestoneService } from './shared/milestone.service';
 import { EmbedlyService } from './shared/embedly.service';
 import { PostsService } from './shared/posts.service';
 import { UrlService } from './shared/url.service';
-import { UrlComponent } from './url/url.component';
-
-
+import { UrlComponent, UrlDialog } from './url/url.component';
 
 // Must export the config
 export const firebaseConfig = {
@@ -43,7 +41,8 @@ const myFirebaseAuthConfig = {
     LearningExperienceComponent,
     MilestoneComponent,
     PostComponent,
-    UrlComponent
+    UrlComponent,
+    UrlDialog
   ],
   imports: [
     BrowserModule,
@@ -61,6 +60,7 @@ const myFirebaseAuthConfig = {
   PostsService,
   UrlService
   ],
+  entryComponents: [UrlDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

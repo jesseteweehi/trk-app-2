@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UrlService } from '../shared/url.service';
 import { UrlModel } from '../shared/url';
-import { FormGroup, FormBuilder } from '@angular/forms' 
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { MdDialog, MdDialogRef } from '@angular/material'; 
 
 @Component({
   selector: 'trk-url',
@@ -13,7 +14,9 @@ export class UrlComponent implements OnInit {
 	public urlsForPost: UrlModel[];
 	public form: FormGroup;
 
-  	constructor(private us: UrlService, public fb: FormBuilder) {
+	dialogRef: MdDialogRef<UrlDialog>;
+
+  	constructor(private us: UrlService, public fb: FormBuilder, public dialog: MdDialog) {
   		this.form = this.fb.group({
   	  		title: '',
   	  		url: '' 
@@ -31,6 +34,19 @@ export class UrlComponent implements OnInit {
   			  	);
   	}
 
+  	
+
+  	openDialog() {
+  	    this.dialogRef = this.dialog.open(UrlDialog, {
+  	      disableClose: false
+  	    });
+
+  	    this.dialogRef.afterClosed().subscribe(result => {
+  	      this.create(result);
+  	      this.dialogRef = null;
+  	    });
+  	  }
+
 
   	ngOnInit() {
   		this.us.findUrlsForPost(this.postID)
@@ -40,4 +56,29 @@ export class UrlComponent implements OnInit {
 
   }
 
+}
+
+@Component({
+  selector: 'url-dialog',
+  template: `
+  	
+  	<h5 md-dialog-title>Add Url</h5>
+
+  	<form novalidate [formGroup]="form">
+
+    	    	
+    	<md-input-container style="width: 100%">
+    	     <input formControlName="description" md-input placeholder="Add Url">
+    	</md-input-container>
+        
+
+    	<button (click)="dialogRef.close(form)" md-raised-button color="primary">Post</button>
+    	<button md-raised-button md-dialog-close >Cancel</button>
+  	</form>
+  `
+})
+export class UrlDialog {
+  constructor(public dialogRef: MdDialogRef<UrlDialog>) { }
+
+  
 }
