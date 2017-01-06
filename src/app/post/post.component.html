@@ -13,19 +13,27 @@
 </md-card>
 
 <md-card *ngIf="p.posttype==='resource'" class="md-card-flat post resource">
-   <md-card-title-group>
-      <img md-card-sm-image src="path/to/img.png">
-      <md-card-title><b>{{p.posttype}}</b>  {{p.title}}</md-card-title>
-      <md-card-subtitle>{{p.description}}</md-card-subtitle>
-   </md-card-title-group>
+  <md-card-title><b>{{p.posttype}}</b>  {{p.title}}</md-card-title>
+  <md-card-content>{{p.description}}
+
+  <hr>
+
+  <trk-url [postID]="p.$key"></trk-url>
+
+
+
+  </md-card-content>
 </md-card>
 
 <md-card *ngIf="p.posttype==='work'" class="md-card-flat post work">
-   <md-card-title-group>
-      <img md-card-sm-image src="path/to/img.png">
-      <md-card-title><b>{{p.url}}</b>  {{p.title}}</md-card-title>
-      <md-card-subtitle>{{p.description}}</md-card-subtitle>
-   </md-card-title-group>
+  <md-card-title><b>{{p.posttype}}</b>  {{p.title}}</md-card-title>
+  <md-card-content>{{p.description}}
+
+  <hr>
+
+  <trk-url [postID]="p.$key"></trk-url>
+
+  </md-card-content>
 </md-card>
 
 
@@ -54,23 +62,28 @@
 
   </md-tab>
   <md-tab label="Resource">
-  	<p>Store a Resource</p>
+  	<p>Create Resource Container</p>
 
    
     <form novalidate [formGroup]="form" (submit)="create(form, 'resource')">
 
 
     	<md-input-container style="width: 100%">
-    	     <input formControlName="url" md-input placeholder="Resource Link">
-    	</md-input-container>
+         <input  formControlName="title" md-input placeholder="Title">
+      </md-input-container>
+
+      
+      <md-input-container style="width: 100%">
+           <textarea formControlName="description" md-input placeholder="Description"></textarea>
+      </md-input-container>
         
 
-    <button type="submit" md-raised-button color="primary">Post</button>
+    <button type="submit" md-raised-button color="primary">Create</button>
     </form> 
 
   </md-tab>
   <md-tab label="Work">
-  	<p>Work to look over</p>
+  	<p>Create Work Container</p>
    
     <form novalidate [formGroup]="form" (submit)="create(form, 'work')">
 
@@ -84,12 +97,8 @@
     	     <textarea formControlName="description" md-input placeholder="Description"></textarea>
     	</md-input-container>
 
-    	<md-input-container style="width: 100%">
-    	     <input formControlName="url" md-input placeholder="Link to you work">
-    	</md-input-container>
-        
 
-    <button type="submit" md-raised-button color="primary">Post</button>
+    <button type="submit" md-raised-button color="primary">Create</button>
     </form> 
 
   </md-tab>

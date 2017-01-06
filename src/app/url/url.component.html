@@ -1,0 +1,14 @@
+<button style="float:right;" md-icon-button>
+	<md-icon>add</md-icon>
+</button>
+
+
+   
+<md-list>
+  <md-list-item *ngFor="let url of urlsForPost">
+    <h3 md-line> {{url.title}} </h3>
+    <p md-line>
+      <span><a href="{{url.link}}">{{url.link}}</a> </span>
+    </p>
+  </md-list-item>
+</md-list>

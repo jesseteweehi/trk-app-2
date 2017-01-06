@@ -9,8 +9,6 @@ import { FormGroup, FormBuilder } from '@angular/forms'
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-  @ViewChild('url') b: ElementRef;
-
   @Input() public milestoneID : string;
   public postsForMilestone: PostModel[];
   public form: FormGroup;
@@ -47,8 +45,5 @@ export class PostComponent implements OnInit {
 
   }
 
-  ngAfterViewInit() {
-    this.url.nativeElement.focus()
-  }
 
 }

@@ -2,42 +2,38 @@ import { Injectable, Inject } from '@angular/core';
 import { AngularFire, FirebaseRef } from "angularfire2";
 import {Http, Response} from "@angular/http";
 
-
 import { Observable, Subject} from "rxjs/Rx";
-import { PostModel } from './posts'
+import { UrlModel } from './url'
 import { firebaseConfig } from '../app.module'
-import { EmbedlyService } from './embedly.service'
 
 @Injectable()
-export class PostsService {
+export class UrlService {
 
-    sdkDb:any;
+      sdkDb:any;
 
     constructor(private af:AngularFire, 
         @Inject(FirebaseRef) fb, 
-        private http:Http, 
-        private es:EmbedlyService) {
+        private http:Http) {
 
         this.sdkDb = fb.database().ref();
 
     }
 
-    findPostsForMilestone(milestoneKey:string): Observable<PostModel[]> {
+    findUrlsForPost(postKey:string): Observable<UrlModel[]> {
 
-    	return this.af.database.list(`posts/${milestoneKey}`)
-    		// .do(console.log)
-    		.map(PostModel.fromJsonList);
+    	return this.af.database.list(`urls/${postKey}`)
+    		.map(UrlModel.fromJsonList)
     }
 
-    createPostsForMilestone(milestoneKey:string, PostModel:any): Observable<any> {
- 
-    	const postToSave = Object.assign({}, PostModel);
+    createUrlsForPosts(postKey:string, UrlModel:any): Observable<any> {
 
-    	const newPostKey = this.sdkDb.child(`posts/${milestoneKey}`).push().key;
+    	const urlToSave = Object.assign({}, UrlModel);
+
+    	const newUrlKey = this.sdkDb.child(`url/${postKey}`).push().key;
 
     	let dataToSave = {};
 
-    	dataToSave[`posts/${milestoneKey}/${newPostKey}`] = postToSave
+    	dataToSave[`urls/${postKey}/${newUrlKey}`] = urlToSave
 
     	return this.firebaseUpdate(dataToSave)
     }
@@ -62,11 +58,11 @@ export class PostsService {
         return subject.asObservable();
     }
 
-    deletePost(milestoneID:string, postID:string): Observable<any> {
+    deleteUrl(postID:string, UrlID:string): Observable<any> {
 
-        const url = firebaseConfig.databaseURL + '/posts/' + milestoneID +'/'+ postID + '.json';
+    	const url = firebaseConfig.databaseURL + '/urls/' + postID + '/' + UrlID + '.json';
 
-        return this.http.delete(url);
-    }     
+    	return this.http.delete(url);
+    } 
 
 }
