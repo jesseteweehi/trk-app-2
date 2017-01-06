@@ -20,7 +20,7 @@ export class LearningExperienceService {
 	findAllLearningExperiences(): Observable<LearningExperienceModel[]> {
 	  	
 	  	return this.af.database.list('learningexperiences')
-	  		.do(console.log)
+	  		// .do(console.log)
 	  		.map(LearningExperienceModel.fromJsonList);
 
   	}

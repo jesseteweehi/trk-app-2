@@ -1,16 +1,22 @@
 import { Injectable, Inject } from '@angular/core';
 import { AngularFire, FirebaseRef } from "angularfire2";
+import {Http, Response} from "@angular/http";
+
+
 import { Observable, Subject} from "rxjs/Rx";
 import { PostModel } from './posts'
 import { firebaseConfig } from '../app.module'
-import {Http} from "@angular/http";
+import { EmbedlyService } from './embedly.service'
 
 @Injectable()
 export class PostsService {
 
   sdkDb:any;
 
-    constructor(private af:AngularFire, @Inject(FirebaseRef) fb, private http:Http) {
+    constructor(private af:AngularFire, 
+        @Inject(FirebaseRef) fb, 
+        private http:Http, 
+        private es:EmbedlyService) {
 
         this.sdkDb = fb.database().ref();
 
@@ -19,12 +25,13 @@ export class PostsService {
     findPostsForMilestone(milestoneKey:string): Observable<PostModel[]> {
 
     	return this.af.database.list(`posts/${milestoneKey}`)
-    		.do(console.log)
+    		// .do(console.log)
     		.map(PostModel.fromJsonList);
     }
 
     createPostsForMilestone(milestoneKey:string, PostModel:any): Observable<any> {
 
+    
     	const postToSave = Object.assign({}, PostModel);
 
     	const newPostKey = this.sdkDb.child(`posts/${milestoneKey}`).push().key;

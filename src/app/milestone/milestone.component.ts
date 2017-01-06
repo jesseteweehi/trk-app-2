@@ -53,7 +53,7 @@ export class MilestoneComponent implements OnInit {
 
   ngOnInit() {
     this.ms.findMilestoneForLearningExperience(this.id)
-      .do(console.log)
+      // .do(console.log)
       .subscribe(
         milestones => this.milestonesForLExperiences = milestones
       );

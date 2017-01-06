@@ -30,15 +30,15 @@ export class LearningExperienceComponent implements OnInit {
 
 	ngOnInit() {
 		this.ls.findAllLearningExperiences()
-			.do(console.log)
+			// .do(console.log)
 			.subscribe(
 				lexperiences => this.allLearningExperiences = lexperiences
 			);
 
-		this.es.findUrlInfo('http://www.google.com')
-			.subscribe(
-				(data:Response) => console.log(data)
-				);
+		// this.es.findUrlInfo('http://www.google.com')
+		// 	.subscribe(
+		// 		(data:Response) => console.log(data)
+		// 		);
 	}
 
 	create(form) {

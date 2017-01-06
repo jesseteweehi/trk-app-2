@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Http} from "@angular/http";
 import { Observable, Subject} from "rxjs/Rx";
+import { Response } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 
 
@@ -22,6 +24,7 @@ export class EmbedlyService {
 			'format': 'json'}
 
 		return this.http.get(this.embedlyUrl + this.encodeQueryData(data))
+					.map((response: Response) => response.json());
 	}
 
 	encodeQueryData(data) {

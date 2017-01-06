@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
 import { PostsService } from '../shared/posts.service';
 import { PostModel } from '../shared/posts';
 import { FormGroup, FormBuilder } from '@angular/forms'
@@ -9,13 +9,14 @@ import { FormGroup, FormBuilder } from '@angular/forms'
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
+  @ViewChild('url') b: ElementRef;
+
   @Input() public milestoneID : string;
   public postsForMilestone: PostModel[];
   public form: FormGroup;
 
   constructor(private ps: PostsService, public fb: FormBuilder) {
   	this.form = this.fb.group({
-  	  posttype: '',	
   	  title: '',
   	  description: '',
   	  url: '' 
@@ -23,7 +24,9 @@ export class PostComponent implements OnInit {
 
   	}
 
-  create(form) {
+  create(form, type) {
+  	form.value.posttype = type
+  	// console.log(form.value)
   	this.ps.createPostsForMilestone(this.milestoneID,form.value)
   		.subscribe(
   		  	() => {
@@ -36,12 +39,16 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {
   	this.ps.findPostsForMilestone(this.milestoneID)
-  		.do(console.log)
+  		// .do(console.log)
   		.subscribe(
   			posts => this.postsForMilestone = posts
   		);
 
 
+  }
+
+  ngAfterViewInit() {
+    this.url.nativeElement.focus()
   }
 
 }

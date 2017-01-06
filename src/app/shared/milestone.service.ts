@@ -19,7 +19,7 @@ export class MilestoneService {
     findMilestoneForLearningExperience(lExperienceKey: string): Observable<MilestoneModel[]> {
 	  	
 	  	return this.af.database.list(`milestones/${lExperienceKey}`)
-	  		.do(console.log)
+	  		// .do(console.log)
 	  		.map(MilestoneModel.fromJsonList);
 
   	}
