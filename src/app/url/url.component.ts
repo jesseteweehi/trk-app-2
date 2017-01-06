@@ -12,7 +12,7 @@ export class UrlComponent implements OnInit {
 	@Input() public postID : string;
 	public urlsForPost: UrlModel[];
 	public form: FormGroup;
-  public openbool: Boolean;
+  public openstring = ''
 
   	constructor(private us: UrlService, public fb: FormBuilder) {
   		this.form = this.fb.group({
@@ -38,15 +38,14 @@ export class UrlComponent implements OnInit {
   			.subscribe(
   				urls => this.urlsForPost = urls
   			);
-      this.openbool = true
     }
 
     open(){
-      this.openbool = true     
+      this.openstring = this.postID;    
     }
 
     close(){
-      this.openbool = false     
+      this.openstring = 'false';     
     }
     
 

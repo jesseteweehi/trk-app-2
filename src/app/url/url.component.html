@@ -7,11 +7,11 @@
   </md-list-item>
 </md-list>
 
-<button md-icon-button (click)="open()">
+<button *ngIf="openstring!==postID" md-icon-button (click)="open()">
 	<md-icon>add</md-icon>
 </button>
 
-<form *ngIf="openbool" novalidate [formGroup]="form" (submit)="create(form)">
+<form *ngIf="openstring===postID" novalidate [formGroup]="form" (submit)="create(form)">
 
 
       <md-input-container style="width: 100%">
