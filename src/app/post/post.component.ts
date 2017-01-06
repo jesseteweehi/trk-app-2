@@ -26,7 +26,6 @@ export class PostComponent implements OnInit {
   	this.ps.createPostsForMilestone(this.milestoneID,form.value)
   		.subscribe(
   		  	() => {
-  		    	alert("Milestone Created Successfully");
   		    	form.reset();
   		  	},
   		  	err => alert(`error creating lessin ${err}`)

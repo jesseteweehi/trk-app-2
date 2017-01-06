@@ -1,10 +1,24 @@
-/*.md-card-flat {
+.center {
+  margin: auto;
+}
+
+.post {
 	background-color: #FCFCFC;
+  width: 500px;
 	margin-bottom: 8px;
 	float: right;
 }
 
-.comment {
+.post md-card-subtitle b {
+  color: #757575;
+  font-size: 9px;
+  padding: 5px;
+  font-weight: 700;
+  text-transform: uppercase;
+
+}
+
+/*.comment {
 	width: 525px;
 	border-left: solid 5px #FCFCFC;
 

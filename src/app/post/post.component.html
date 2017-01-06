@@ -6,17 +6,31 @@
     
 </md-card> -->
 
-<md-card class="md-card-flat" *ngFor="let p of postsForMilestone">
-{{p | json}}
+<md-card class="md-card-flat post" *ngFor="let p of postsForMilestone">
+	<md-card-subtitle>{{p.title}}<b>{{p.posttype}}</b></md-card-subtitle>
+	<md-card-content>{{p.description}}</md-card-content>
 </md-card>
 
-{{postsForMilestone | json}}
+<div style="clear: right"></div>
+
+
+<md-card class="md-card-flat">
+	<md-button-toggle-group #postbutton >
+	    <md-button-toggle value="comment" >Comment</md-button-toggle>
+	    <md-button-toggle value="resource">Resource</md-button-toggle>
+	    <md-button-toggle value="work">Work</md-button-toggle>
+	</md-button-toggle-group>
+</md-card>
+
+
+<md-card *ngIf="postbutton.value===comment" class="md-card-flat">
+
 
 
 <form novalidate [formGroup]="form" (submit)="create(form)">
 
-<md-card>
-	<md-card-title>New Post</md-card-title> 
+	
+
 
 	<md-input-container style="width: 100%">
 	   <input  formControlName="posttype" md-input placeholder="Post Type">
@@ -34,5 +48,7 @@
 
 <button type="submit" md-raised-button color="primary">Create</button>
 
-</md-card>
+
 </form> 
+
+</md-card>
