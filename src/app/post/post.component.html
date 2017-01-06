@@ -6,12 +6,14 @@
     
 </md-card> -->
 
-<md-card class="md-card-flat post" *ngFor="let p of postsForMilestone">
+<div *ngFor="let p of postsForMilestone">
+<md-card *ngIf="p.posttype===comment"class="md-card-flat post">
 	<md-card-subtitle>{{p.title}}<b>{{p.posttype}}</b></md-card-subtitle>
 	<md-card-content>{{p.description}}</md-card-content>
 </md-card>
 
 <div style="clear: right"></div>
+</div>
 
 
 
@@ -21,16 +23,11 @@
 <md-card class="md-card-flat">
 
 <md-tab-group>
-  <md-tab label="Feedback">   
-    <form novalidate [formGroup]="form" (submit)="create(form)">
+  <md-tab label="Feedback">
+  	<p>Comment or Feedback</p>   
+    <form novalidate [formGroup]="form" (submit)="create(form.value, 'comment')">
 
     	
-
-
-    	<md-input-container style="width: 100%">
-    	   <input  formControlName="posttype" md-input placeholder="Post Type">
-    	</md-input-container>
-
     	<md-input-container style="width: 100%">
     	   <input  formControlName="title" md-input placeholder="Title">
     	</md-input-container>
@@ -46,13 +43,12 @@
 
   </md-tab>
   <md-tab label="Resource">
+  	<p>Store a Resource</p>
+
    
     <form novalidate [formGroup]="form" (submit)="create(form)">
 
 
-    	<md-input-container style="width: 100%">
-    	   <input  formControlName="posttype" md-input placeholder="Post Type">
-    	</md-input-container>
 
     	<md-input-container style="width: 100%">
     	   <input  formControlName="title" md-input placeholder="Title">
@@ -64,7 +60,7 @@
     	</md-input-container>
 
     	<md-input-container style="width: 100%">
-    	     <textarea formControlName="url" md-input placeholder="Resource Link"></textarea>
+    	     <input formControlName="url" md-input placeholder="Resource Link">
     	</md-input-container>
         
 
@@ -73,15 +69,10 @@
 
   </md-tab>
   <md-tab label="Work">
+  	<p>Work to look over</p>
    
     <form novalidate [formGroup]="form" (submit)="create(form)">
 
-    	
-
-
-    	<md-input-container style="width: 100%">
-    	   <input  formControlName="posttype" md-input placeholder="Post Type">
-    	</md-input-container>
 
     	<md-input-container style="width: 100%">
     	   <input  formControlName="title" md-input placeholder="Title">
