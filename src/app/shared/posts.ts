@@ -3,7 +3,7 @@ export class PostModel {
 		public $key: string,
 		public posttype: string, 
 		public title: string,
-		public description: string,
+		public description: string,) {}
 
 	static fromJsonList(array): PostModel[] {
         return array.map(PostModel.fromJson);

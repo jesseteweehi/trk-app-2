@@ -1,0 +1,72 @@
+/*.md-card-flat {
+	background-color: #FCFCFC;
+	margin-bottom: 8px;
+	float: right;
+}
+
+.comment {
+	width: 525px;
+	border-left: solid 5px #FCFCFC;
+
+}
+
+.resource {
+ 	width: 525px;
+ 	border-left: solid 5px #D1C4E9;
+}
+
+.resource md-card-title {
+	border-bottom: none;
+}
+
+.marking {
+	width: 550px;
+	border-left: solid 5px #673AB7;	
+
+}
+
+.stream-head {
+	font-size: 17px;
+}
+
+.comment md-card-title {
+	border-top: #cccccc;
+	border-top-style: solid;
+    border-top-width: 2px;
+    border-bottom: none;
+}
+
+
+.comment md-card-subtitle b {
+  color: #757575;
+  font-size: 9px;
+  padding: 5px;
+  font-weight: 700;
+  text-transform: uppercase;
+
+}
+
+.resource md-card-subtitle b {
+  background: #D1C4E9;
+  color: #FFF;
+  font-size: 9px;
+  padding: 5px;
+  font-weight: 700;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  text-transform: uppercase;
+
+}
+
+.marking md-card-subtitle b {
+  background: #673AB7;
+  color: #FFF;
+  font-size: 9px;
+  padding: 5px;
+  font-weight: 700;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}*/

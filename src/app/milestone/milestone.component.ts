@@ -3,7 +3,6 @@ import { Route, ActivatedRoute } from '@angular/router';
 import { MilestoneService } from '../shared/milestone.service';
 import { MilestoneModel } from '../shared/milestone';
 import { FormGroup, FormBuilder } from '@angular/forms'
-import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { Observable, Subscription } from 'rxjs';
 import 'rxjs/add/operator/map'
 

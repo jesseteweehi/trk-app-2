@@ -11,11 +11,13 @@ import {routerConfig} from "./router.config";
 import { AppComponent } from './app.component';
 import { LearningExperienceComponent } from './learning-experience/learning-experience.component';
 import { MilestoneComponent } from './milestone/milestone.component';
+import { PostComponent } from './post/post.component';
 
 
 import { LearningExperienceService } from './shared/learning-experience.service';
 import { MilestoneService } from './shared/milestone.service';
 import { EmbedlyService } from './shared/embedly.service';
+import { PostsService } from './shared/posts.service';
 
 
 
@@ -37,7 +39,8 @@ const myFirebaseAuthConfig = {
   declarations: [
     AppComponent,
     LearningExperienceComponent,
-    MilestoneComponent
+    MilestoneComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,7 @@ const myFirebaseAuthConfig = {
     MaterialModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig) 
   ],
-  providers: [LearningExperienceService, MilestoneService, EmbedlyService],
+  providers: [LearningExperienceService, MilestoneService, EmbedlyService, PostsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

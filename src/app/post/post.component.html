@@ -1,0 +1,38 @@
+<!-- 
+<md-card *ngFor="let post of postsForMilestone" class="md-card-flat">
+	
+	<md-card-subtitle><b>{{post.posttype}}</b>{{post.title}}</md-card-subtitle>
+	<md-card-content>{{post.description}}</md-card-content>
+    
+</md-card> -->
+
+<md-card class="md-card-flat" *ngFor="let p of postsForMilestone">
+{{p | json}}
+</md-card>
+
+{{postsForMilestone | json}}
+
+
+<form novalidate [formGroup]="form" (submit)="create(form)">
+
+<md-card>
+	<md-card-title>New Post</md-card-title> 
+
+	<md-input-container style="width: 100%">
+	   <input  formControlName="posttype" md-input placeholder="Post Type">
+	</md-input-container>
+
+	<md-input-container style="width: 100%">
+	   <input  formControlName="title" md-input placeholder="Title">
+	</md-input-container>
+
+	
+	<md-input-container style="width: 100%">
+	     <textarea formControlName="description" md-input placeholder="Description"></textarea>
+	</md-input-container>
+    
+
+<button type="submit" md-raised-button color="primary">Create</button>
+
+</md-card>
+</form> 

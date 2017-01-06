@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { AngularFire, FirebaseRef } from "angularfire2";
 import { Observable, Subject} from "rxjs/Rx";
-import { PostModel } from './learning-experience'
+import { PostModel } from './posts'
 import { firebaseConfig } from '../app.module'
 import {Http} from "@angular/http";
 
@@ -23,7 +23,7 @@ export class PostsService {
     		.map(PostModel.fromJsonList);
     }
 
-    createPostsforMilestone(milestoneKey:string, PostModel:any): Observable<any> {
+    createPostsForMilestone(milestoneKey:string, PostModel:any): Observable<any> {
 
     	const postToSave = Object.assign({}, PostModel);
 
