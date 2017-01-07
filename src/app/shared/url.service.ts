@@ -9,7 +9,7 @@ import { firebaseConfig } from '../app.module'
 @Injectable()
 export class UrlService {
 
-      sdkDb:any;
+    sdkDb:any;
 
     constructor(private af:AngularFire, 
         @Inject(FirebaseRef) fb, 

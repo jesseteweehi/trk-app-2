@@ -1,0 +1,39 @@
+
+
+<span class="badge">Replies {{ repliesForPost?.length }}</span>
+<span>
+<button *ngIf="openstring!==postID" md-icon-button (click)="open()">
+	<md-icon>add</md-icon>
+</button>
+
+<button *ngIf="openstring===postID" md-icon-button (click)="close()">
+  <md-icon>close</md-icon>
+</button>	
+</span>
+
+
+
+
+<div *ngIf="openstring===postID"> 
+<md-list dense>
+	<md-list-item *ngFor="let r of repliesForPost">
+    {{r.comment}}
+   </md-list-item>
+</md-list>
+
+<div style="clear: right"></div>
+
+<md-card class="md-card-flat commentform">
+<form novalidate [formGroup]="form" (submit)="create(form)">
+
+    	    	
+    	<md-input-container style="width: 100%">
+    	     <input formControlName="comment" md-input placeholder="">
+    	</md-input-container>
+        
+
+    
+</form>
+</md-card>
+
+</div>

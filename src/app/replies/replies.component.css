@@ -1,0 +1,59 @@
+md-list-item {
+  background-color: #FCFCFC;
+  width: 475px;
+  margin-bottom: 1px;
+  float: right;
+}
+
+.commentform {
+	margin-top: 10px;
+}
+
+.badge {
+	background-color: #cccccc;
+	color: black;
+  	font-size: 10px;
+  	font-weight: 700;
+  	text-transform: uppercase;
+	padding: 5px;
+	
+}
+
+.post {
+  background-color: #FCFCFC;
+  width: 475px;
+  margin-bottom: 8px;
+  float: right;
+}
+
+.post md-card-subtitle b {
+  color: #757575;
+  font-size: 9px;
+  padding: 5px;
+  font-weight: 700;
+  text-transform: uppercase;
+
+}
+
+.feedback {
+	width: 525px;
+	border-left: solid 5px #FCFCFC;
+
+}
+
+.feedback md-card-title {
+	border-top: #cccccc;
+	border-top-style: solid;
+    border-top-width: 2px;
+    border-bottom: none;
+}
+
+
+.feedback md-card-subtitle b {
+  color: #757575;
+  font-size: 9px;
+  padding: 5px;
+  font-weight: 700;
+  text-transform: uppercase;
+
+}

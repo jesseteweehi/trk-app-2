@@ -6,7 +6,7 @@
     
 </md-card> -->
 
-<div *ngFor="let p of postsForMilestone">
+<div style="margin-top: 7px;" *ngFor="let p of postsForMilestone">
 <md-card *ngIf="p.posttype==='comment'" class="md-card-flat post feedback">
 	<md-card-subtitle><b>Feedback | Comment</b>
       <button md-icon-button>
@@ -46,6 +46,10 @@
 
 
 <div style="clear: right"></div>
+
+<trk-replies [postID]="p.$key"></trk-replies>
+
+
 </div>
 
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UrlService } from '../shared/url.service';
 import { UrlModel } from '../shared/url';
-import { FormGroup, FormBuilder } from '@angular/forms' 
+import { FormGroup, FormBuilder } from '@angular/forms'; 
 
 @Component({
   selector: 'trk-url',

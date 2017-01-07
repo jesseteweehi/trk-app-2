@@ -12,6 +12,8 @@ import { AppComponent } from './app.component';
 import { LearningExperienceComponent } from './learning-experience/learning-experience.component';
 import { MilestoneComponent } from './milestone/milestone.component';
 import { PostComponent } from './post/post.component';
+import { UrlComponent } from './url/url.component';
+import { RepliesComponent } from './replies/replies.component';
 
 
 import { LearningExperienceService } from './shared/learning-experience.service';
@@ -19,7 +21,7 @@ import { MilestoneService } from './shared/milestone.service';
 import { EmbedlyService } from './shared/embedly.service';
 import { PostsService } from './shared/posts.service';
 import { UrlService } from './shared/url.service';
-import { UrlComponent } from './url/url.component';
+import { RepliesService } from './shared/replies.service';
 
 
 
@@ -43,7 +45,8 @@ const myFirebaseAuthConfig = {
     LearningExperienceComponent,
     MilestoneComponent,
     PostComponent,
-    UrlComponent
+    UrlComponent,
+    RepliesComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,8 @@ const myFirebaseAuthConfig = {
   MilestoneService, 
   EmbedlyService, 
   PostsService,
-  UrlService
+  UrlService,
+  RepliesService
   ],
   bootstrap: [AppComponent]
 })
