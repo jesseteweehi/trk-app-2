@@ -1,53 +1,52 @@
-<!-- 
-<md-card *ngFor="let post of postsForMilestone" class="md-card-flat">
-	
-	<md-card-subtitle><b>{{post.posttype}}</b>{{post.title}}</md-card-subtitle>
-	<md-card-content>{{post.description}}</md-card-content>
-    
-</md-card> -->
+<div class="md-card-flat" style="margin-top: 7px;" *ngFor="let p of postsForMilestone">
+  
+  <md-card *ngIf="p.posttype==='comment'" class="md-card-flat post feedback">
+  	<md-card-subtitle><b>Feedback | Comment</b>
+        <button md-icon-button>
+          <md-icon>more_vert</md-icon>
+        </button>
+    </md-card-subtitle>
+  	<md-card-content>{{p.description}}</md-card-content>
+  </md-card>
 
-<div style="margin-top: 7px;" *ngFor="let p of postsForMilestone">
-<md-card *ngIf="p.posttype==='comment'" class="md-card-flat post feedback">
-	<md-card-subtitle><b>Feedback | Comment</b>
+  <md-card *ngIf="p.posttype==='resource'" class="md-card-flat post resource">
+    <md-card-title><b>{{p.posttype}}</b>  {{p.title}}
       <button md-icon-button>
         <md-icon>more_vert</md-icon>
       </button>
-  </md-card-subtitle>
-	<md-card-content>{{p.description}}</md-card-content>
-</md-card>
+    </md-card-title>
+    <md-card-content>{{p.description}}
 
-<md-card *ngIf="p.posttype==='resource'" class="md-card-flat post resource">
-  <md-card-title><b>{{p.posttype}}</b>  {{p.title}}
-    <button md-icon-button>
-      <md-icon>more_vert</md-icon>
-    </button>
-  </md-card-title>
-  <md-card-content>{{p.description}}
+    <hr>
 
-  <hr>
-
-  <trk-url [postID]="p.$key"></trk-url>
+    <trk-url [postID]="p.$key"></trk-url>
 
 
 
-  </md-card-content>
-</md-card>
+    </md-card-content>
+  </md-card>
 
-<md-card *ngIf="p.posttype==='work'" class="md-card-flat post work">
-  <md-card-title><b>{{p.posttype}}</b>  {{p.title}}</md-card-title>
-  <md-card-content>{{p.description}}
+  <md-card *ngIf="p.posttype==='work'" class="md-card-flat post work">
+    <md-card-title><b>{{p.posttype}}</b>  {{p.title}}</md-card-title>
+    <md-card-content>{{p.description}}
 
-  <hr>
+    <hr>
 
-  <trk-url [postID]="p.$key"></trk-url>
+    <trk-url [postID]="p.$key"></trk-url>
 
-  </md-card-content>
-</md-card>
+    </md-card-content>
+  </md-card>
 
 
-<div style="clear: right"></div>
+  <div style="clear: right"></div>
 
-<trk-replies [postID]="p.$key"></trk-replies>
+
+
+  
+    <trk-replies [postID]="p.$key"></trk-replies>
+  
+
+  <div style="clear: right"></div>
 
 
 </div>
@@ -59,63 +58,62 @@
 
 <md-card class="md-card-flat">
 
-<md-tab-group>
-  <md-tab label="Comment">  
-    <form novalidate [formGroup]="form" (submit)="create(form, 'comment')">
+  <md-tab-group>
+    <md-tab label="Comment">  
+      <form novalidate [formGroup]="form" (submit)="create(form, 'comment')">
 
-    	    	
-    	<md-input-container style="width: 100%">
-    	     <textarea formControlName="description" md-input placeholder=""></textarea>
-    	</md-input-container>
+      	    	
+      	<md-input-container style="width: 100%">
+      	     <textarea formControlName="description" md-input placeholder=""></textarea>
+      	</md-input-container>
+          
+
+      <button type="submit" md-raised-button color="primary">Post</button>
+      </form> 
+
+    </md-tab>
+    <md-tab label="Resource">
+    	<p>Create Resource Container</p>
+
+     
+      <form novalidate [formGroup]="form" (submit)="create(form, 'resource')">
+
+
+      	<md-input-container style="width: 100%">
+           <input  formControlName="title" md-input placeholder="Title">
+        </md-input-container>
+
         
+        <md-input-container style="width: 100%">
+             <textarea formControlName="description" md-input placeholder="Description"></textarea>
+        </md-input-container>
+          
 
-    <button type="submit" md-raised-button color="primary">Post</button>
-    </form> 
+      <button type="submit" md-raised-button color="primary">Create</button>
+      </form> 
 
-  </md-tab>
-  <md-tab label="Resource">
-  	<p>Create Resource Container</p>
-
-   
-    <form novalidate [formGroup]="form" (submit)="create(form, 'resource')">
-
-
-    	<md-input-container style="width: 100%">
-         <input  formControlName="title" md-input placeholder="Title">
-      </md-input-container>
-
-      
-      <md-input-container style="width: 100%">
-           <textarea formControlName="description" md-input placeholder="Description"></textarea>
-      </md-input-container>
-        
-
-    <button type="submit" md-raised-button color="primary">Create</button>
-    </form> 
-
-  </md-tab>
-  <md-tab label="Work">
-  	<p>Create Work Container</p>
-   
-    <form novalidate [formGroup]="form" (submit)="create(form, 'work')">
+    </md-tab>
+    <md-tab label="Work">
+    	<p>Create Work Container</p>
+     
+      <form novalidate [formGroup]="form" (submit)="create(form, 'work')">
 
 
-    	<md-input-container style="width: 100%">
-    	   <input  formControlName="title" md-input placeholder="Title">
-    	</md-input-container>
+      	<md-input-container style="width: 100%">
+      	   <input  formControlName="title" md-input placeholder="Title">
+      	</md-input-container>
 
-    	
-    	<md-input-container style="width: 100%">
-    	     <textarea formControlName="description" md-input placeholder="Description"></textarea>
-    	</md-input-container>
+      	
+      	<md-input-container style="width: 100%">
+      	     <textarea formControlName="description" md-input placeholder="Description"></textarea>
+      	</md-input-container>
 
 
-    <button type="submit" md-raised-button color="primary">Create</button>
-    </form> 
+      <button type="submit" md-raised-button color="primary">Create</button>
+      </form> 
 
-  </md-tab>
+    </md-tab>
 
-</md-tab-group>
-
+  </md-tab-group>
 
 </md-card>

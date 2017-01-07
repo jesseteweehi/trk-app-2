@@ -2,6 +2,7 @@
 
 <span class="badge">Replies {{ repliesForPost?.length }}</span>
 <span>
+
 <button *ngIf="openstring!==postID" md-icon-button (click)="open()">
 	<md-icon>add</md-icon>
 </button>
@@ -14,12 +15,12 @@
 
 
 
-<div *ngIf="openstring===postID"> 
-<md-list dense>
-	<md-list-item *ngFor="let r of repliesForPost">
+<div style="margin-bottom: 5px;"*ngIf="openstring===postID"> 
+<md-card class="md-card-flat" *ngFor="let r of repliesForPost">
+	<md-card-content>
     {{r.comment}}
-   </md-list-item>
-</md-list>
+   </md-card-content>
+</md-card>
 
 <div style="clear: right"></div>
 
@@ -28,7 +29,7 @@
 
     	    	
     	<md-input-container style="width: 100%">
-    	     <input formControlName="comment" md-input placeholder="">
+    	     <input formControlName="comment" md-input placeholder="Reply">
     	</md-input-container>
         
 

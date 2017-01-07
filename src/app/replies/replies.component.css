@@ -1,8 +1,16 @@
-md-list-item {
+md-card {
   background-color: #FCFCFC;
-  width: 475px;
+  width: 450px;
+  margin-bottom: 2px;
+  float: right;
+}
+
+.commentform{
+  background-color: white;
+  width: 450px;
   margin-bottom: 1px;
   float: right;
+
 }
 
 .commentform {
@@ -19,41 +27,3 @@ md-list-item {
 	
 }
 
-.post {
-  background-color: #FCFCFC;
-  width: 475px;
-  margin-bottom: 8px;
-  float: right;
-}
-
-.post md-card-subtitle b {
-  color: #757575;
-  font-size: 9px;
-  padding: 5px;
-  font-weight: 700;
-  text-transform: uppercase;
-
-}
-
-.feedback {
-	width: 525px;
-	border-left: solid 5px #FCFCFC;
-
-}
-
-.feedback md-card-title {
-	border-top: #cccccc;
-	border-top-style: solid;
-    border-top-width: 2px;
-    border-bottom: none;
-}
-
-
-.feedback md-card-subtitle b {
-  color: #757575;
-  font-size: 9px;
-  padding: 5px;
-  font-weight: 700;
-  text-transform: uppercase;
-
-}
