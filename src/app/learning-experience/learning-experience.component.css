@@ -35,18 +35,3 @@ md-card-title b {
 	float: right;
 }
 
-md-card-subtitle {
-	padding-bottom: 10px;
-}
-
-md-card-subtitle button {
-	position: relative;
-	left: 15px;
-	bottom: 10px;
-	float: right;
-}
-
-md-card-actions button {
-	position: relative;
-	right: 0px;
-}

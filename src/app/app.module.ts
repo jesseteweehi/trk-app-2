@@ -8,21 +8,23 @@ import 'hammerjs';
 import {RouterModule} from "@angular/router";
 import {routerConfig} from "./router.config";
 
-import { AppComponent } from './app.component';
-import { LearningExperienceComponent } from './learning-experience/learning-experience.component';
-import { MilestoneComponent } from './milestone/milestone.component';
-import { PostComponent } from './post/post.component';
-import { UrlComponent } from './url/url.component';
-import { RepliesComponent } from './replies/replies.component';
-
-
 import { LearningExperienceService } from './shared/learning-experience.service';
 import { MilestoneService } from './shared/milestone.service';
 import { EmbedlyService } from './shared/embedly.service';
 import { PostsService } from './shared/posts.service';
 import { UrlService } from './shared/url.service';
 import { RepliesService } from './shared/replies.service';
+import { AuthService } from './global/auth.service';
+import { OrganisationService } from './shared/organisation.service';
 
+import { AppComponent } from './app.component';
+import { LearningExperienceComponent } from './learning-experience/learning-experience.component';
+import { MilestoneComponent } from './milestone/milestone.component';
+import { PostComponent } from './post/post.component';
+import { UrlComponent } from './url/url.component';
+import { RepliesComponent } from './replies/replies.component';
+import { OrganisationComponent } from './organisation/organisation.component'
+import { ApprovedUsersComponent } from './organisation/approved-users/approved-users.component';
 
 
 // Must export the config
@@ -36,7 +38,7 @@ export const firebaseConfig = {
 
 const myFirebaseAuthConfig = {
   provider: AuthProviders.Google,
-  method: AuthMethods.Redirect
+  method: AuthMethods.Popup
 }
 
 @NgModule({
@@ -46,7 +48,9 @@ const myFirebaseAuthConfig = {
     MilestoneComponent,
     PostComponent,
     UrlComponent,
-    RepliesComponent
+    RepliesComponent,
+    OrganisationComponent,
+    ApprovedUsersComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +67,9 @@ const myFirebaseAuthConfig = {
   EmbedlyService, 
   PostsService,
   UrlService,
-  RepliesService
+  RepliesService,
+  AuthService,
+  OrganisationService
   ],
   bootstrap: [AppComponent]
 })

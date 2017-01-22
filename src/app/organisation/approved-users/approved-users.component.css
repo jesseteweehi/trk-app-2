@@ -1,0 +1,12 @@
+md-card {
+	margin: auto;
+	margin-bottom: 30px;
+	margin-top: 30px;
+	width: 600px;
+}
+
+md-card-title {
+	border-bottom: grey;
+	border-bottom-style: solid;
+    border-bottom-width: 2px;
+}

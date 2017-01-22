@@ -1,0 +1,28 @@
+md-card {
+	margin: auto;
+	margin-bottom: 30px;
+	margin-top: 30px;
+	width: 600px;
+}
+
+md-card-title {
+	border-bottom: grey;
+	border-bottom-style: solid;
+    border-bottom-width: 2px;
+}
+
+md-card-subtitle {
+	padding-bottom: 10px;
+}
+
+md-card-subtitle button {
+	position: relative;
+	left: 15px;
+	bottom: 10px;
+	float: right;
+}
+
+md-card-actions button {
+	position: relative;
+	right: 0px;
+}

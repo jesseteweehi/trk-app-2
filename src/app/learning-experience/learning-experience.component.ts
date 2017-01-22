@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { LearningExperienceService } from '../shared/learning-experience.service';
-import { EmbedlyService } from '../shared/embedly.service';
 import { LearningExperienceModel } from '../shared/learning-experience';
 import { Response } from '@angular/http';
 
@@ -16,7 +15,7 @@ export class LearningExperienceComponent implements OnInit {
 	allLearningExperiences: LearningExperienceModel[];
 	form : FormGroup;
 
-	constructor(public fb: FormBuilder, private ls:LearningExperienceService, private es:EmbedlyService ) { 
+	constructor(public fb: FormBuilder, private ls:LearningExperienceService ) { 
 	  	this.form = this.fb.group({
 	  		title: '',
 			date: '',
