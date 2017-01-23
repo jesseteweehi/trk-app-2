@@ -5,6 +5,7 @@ import { firebaseConfig } from '../app.module'
 import {Http} from "@angular/http";
 import { OrganisationModel } from './organisation'
 import { ApprovedUserModel } from './approveduser'
+import { SkillModel } from './skill'
 
 @Injectable()
 export class OrganisationService {
@@ -17,12 +18,42 @@ export class OrganisationService {
 
     }
 
+    findAllSkills(organisationKey: string): Observable<SkillModel[]> {
+
+        return this.af.database.list(`organisations/${organisationKey}/skills`)
+            .map(SkillModel.fromJsonList);
+
+    }
+
+    createSkillForOrganisation(organisationKey: string, SkillModel:any): Observable<any> {
+
+        const skillToSave = Object.assign({}, SkillModel);
+
+        const newSkillKey = this.sdkDb.child(`organisations/${organisationKey}/skills`).push().key;
+
+        let dataToSave = {};
+
+        dataToSave[(`organisations/${organisationKey}/skills/${newSkillKey}`)] = skillToSave
+
+        return this.firebaseUpdate(dataToSave)
+    }
+
+    deleteSkillForOrganisation(organisationID:string, skillID:string): Observable<any> {
+
+        const url = firebaseConfig.databaseURL + '/organisations/' + organisationID + '/skills/'+ skillID + '.json';
+
+        return this.http.delete(url);
+
+    }
+
+
     findAllApprovedUsers(organisationKey: string): Observable<ApprovedUserModel[]> {
 
         return this.af.database.list(`organisations/${organisationKey}/approvedusers`)
             .map(ApprovedUserModel.fromJsonList);
 
     }
+
 
     createApprovedUserForOrganisation(organisationKey: string, ApprovedUserModel:any): Observable<any> {
 
@@ -99,7 +130,8 @@ export class OrganisationService {
 
 //Need to Create
 // Create Organisation - Meta Data | Done
-// Create Allowed Members List
+// Create Allowed Members List | Done
+// Create Skills List
+
 // Create Students List
 // Create Teachers List
-// Create Skills List

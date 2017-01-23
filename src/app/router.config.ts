@@ -3,6 +3,7 @@ import { LearningExperienceComponent } from "./learning-experience/learning-expe
 import { MilestoneComponent } from './milestone/milestone.component';
 import { OrganisationComponent } from "./organisation/organisation.component";
 import { ApprovedUsersComponent } from "./organisation/approved-users/approved-users.component";
+import { SkillsComponent } from './organisation/skills/skills.component';
 
 
 export const routerConfig : Route[] = [
@@ -34,6 +35,10 @@ export const routerConfig : Route[] = [
             {
                 path: 'approvedusers/:id',
                 component: ApprovedUsersComponent,
+            },
+            {
+                path: 'skills/:id',
+                component: SkillsComponent,
             }
         ]
     }

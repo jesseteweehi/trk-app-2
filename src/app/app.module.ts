@@ -25,6 +25,7 @@ import { UrlComponent } from './url/url.component';
 import { RepliesComponent } from './replies/replies.component';
 import { OrganisationComponent } from './organisation/organisation.component'
 import { ApprovedUsersComponent } from './organisation/approved-users/approved-users.component';
+import { SkillsComponent } from './organisation/skills/skills.component';
 
 
 // Must export the config
@@ -50,7 +51,8 @@ const myFirebaseAuthConfig = {
     UrlComponent,
     RepliesComponent,
     OrganisationComponent,
-    ApprovedUsersComponent
+    ApprovedUsersComponent,
+    SkillsComponent
   ],
   imports: [
     BrowserModule,
