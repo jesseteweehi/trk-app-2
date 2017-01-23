@@ -1,7 +1,13 @@
 <md-card>
+  <md-input-container style="width: 100%">
+     <input #mysearch md-input placeholder="Search Emails" (keyup)="search(mysearch.value)">
+  </md-input-container>
+</md-card>
+
+<md-card>
 
   <ul>
-    <li *ngFor="let user of approvedUsersForOrganisation">
+    <li *ngFor="let user of filteredApprovedUsersForOrganisation">
 
       <b>{{user.type}}</b> 
 

@@ -13,6 +13,7 @@ import 'rxjs/add/operator/map'
 })
 export class ApprovedUsersComponent implements OnInit {
 	public approvedUsersForOrganisation: ApprovedUserModel[];
+  public filteredApprovedUsersForOrganisation: ApprovedUserModel[];
 	public form: FormGroup;
 	private subscription: Subscription;
 	private id : string;
@@ -51,9 +52,15 @@ export class ApprovedUsersComponent implements OnInit {
   	ngOnInit() {
   		this.os.findAllApprovedUsers(this.id)
   			.subscribe(
-  				approvedUsers => this.approvedUsersForOrganisation = approvedUsers
+  				approvedUsers => this.approvedUsersForOrganisation = this.filteredApprovedUsersForOrganisation = approvedUsers
   				)
   	}
+
+    search(search:string) {
+
+      this.filteredApprovedUsersForOrganisation = this.approvedUsersForOrganisation.filter(ApprovedUserModel => ApprovedUserModel.email.includes(search));
+
+    }
 
   	ngOnDestroy() {
   	  this.subscription.unsubscribe();
