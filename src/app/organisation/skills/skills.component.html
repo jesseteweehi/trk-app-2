@@ -1,3 +1,50 @@
-<p>
-  skills works!
-</p>
+<md-card>
+  <md-input-container style="width: 100%">
+     <input #mysearch md-input placeholder="Search Skills" (keyup)="search(mysearch.value)">
+  </md-input-container>
+</md-card>
+
+
+
+<md-grid-list cols="4" rowHeight="200px" [style.background]="'lightblue'">
+   <md-grid-tile *ngFor="let skill of filteredSkillsForOrganisation">
+   		<md-grid-tile-header>
+   		<h5 md-line>{{skill.title}}</h5>
+   		</md-grid-tile-header>
+   		<p> {{skill.description}} </p>
+
+
+   		<md-grid-tile-footer>
+   		<a href="{{skill.infourl}}" target="_blank">{{skill.infourl}}</a>
+   		</md-grid-tile-footer> 
+   </md-grid-tile>   
+</md-grid-list>
+
+
+
+<form novalidate [formGroup]="form" (submit)="create(form)">
+
+<md-card>
+	<md-card-title>Create Skill</md-card-title> 
+
+	<md-input-container style="width: 100%">
+	   <input  formControlName="title" md-input placeholder="Skill Title">
+	</md-input-container>
+
+	<md-input-container style="width: 100%">
+	     <textarea formControlName="description" md-input placeholder="Skill Description"></textarea>
+	</md-input-container>
+
+	<md-input-container style="width: 100%">
+	   <input  formControlName="infourl" md-input placeholder="Url for Further Information">
+	</md-input-container>
+
+
+	
+
+  <br >
+
+<button style="margin-top: 10px" type="submit" md-raised-button color="primary">Create</button>
+
+</md-card>
+</form> 

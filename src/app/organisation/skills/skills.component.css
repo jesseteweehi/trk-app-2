@@ -1,0 +1,31 @@
+md-card {
+	margin: auto;
+	margin-bottom: 30px;
+	margin-top: 30px;
+	width: 600px;
+}
+
+md-card-title {
+	border-bottom: 2px solid grey;
+}
+
+md-grid-list {
+	margin: auto;
+	width: 800px;
+
+}
+
+
+md-grid-tile p {
+	color: black;
+	font-size: 12px;
+	position: absolute;
+	left: 2px;
+	top: 48px;
+	overflow: hidden;
+
+}
+
+md-grid-tile a {
+	color: white;
+}
