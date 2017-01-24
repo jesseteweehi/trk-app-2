@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnDestroy } from '@angular/core';
 import {FirebaseAuth} from 'angularfire2';
 import { Observable, Subscription } from 'rxjs';
 
