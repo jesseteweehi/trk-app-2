@@ -1,5 +1,18 @@
 <md-toolbar [color]="primary">
   <span>Rond</span>
+  <span class="right">
+  	<button *ngIf="auth | async" md-icon-button [mdMenuTriggerFor]="menu">
+  		<md-icon color="primary">account_box</md-icon>
+ 	</button>
+ 	<button *ngIf="!(auth | async)" md-button (click)="login()" >Log In</button>
+  </span>
 </md-toolbar>
 
+<md-menu #menu="mdMenu">
+    <button md-menu-item (click)="logout()" > Log Out </button> 
+</md-menu>
+
 <router-outlet></router-outlet>
+
+
+

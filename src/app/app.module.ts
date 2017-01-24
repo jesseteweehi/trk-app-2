@@ -14,7 +14,6 @@ import { EmbedlyService } from './shared/embedly.service';
 import { PostsService } from './shared/posts.service';
 import { UrlService } from './shared/url.service';
 import { RepliesService } from './shared/replies.service';
-import { AuthService } from './global/auth.service';
 import { OrganisationService } from './shared/organisation.service';
 
 import { AppComponent } from './app.component';
@@ -26,6 +25,7 @@ import { RepliesComponent } from './replies/replies.component';
 import { OrganisationComponent } from './organisation/organisation.component'
 import { ApprovedUsersComponent } from './organisation/approved-users/approved-users.component';
 import { SkillsComponent } from './organisation/skills/skills.component';
+import { AuthStatusComponent } from './global/auth-status/auth-status.component';
 
 
 // Must export the config
@@ -39,7 +39,7 @@ export const firebaseConfig = {
 
 const myFirebaseAuthConfig = {
   provider: AuthProviders.Google,
-  method: AuthMethods.Popup
+  method: AuthMethods.Redirect
 }
 
 @NgModule({
@@ -52,7 +52,8 @@ const myFirebaseAuthConfig = {
     RepliesComponent,
     OrganisationComponent,
     ApprovedUsersComponent,
-    SkillsComponent
+    SkillsComponent,
+    AuthStatusComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +71,6 @@ const myFirebaseAuthConfig = {
   PostsService,
   UrlService,
   RepliesService,
-  AuthService,
   OrganisationService
   ],
   bootstrap: [AppComponent]
