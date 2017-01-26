@@ -15,6 +15,7 @@ import { PostsService } from './shared/posts.service';
 import { UrlService } from './shared/url.service';
 import { RepliesService } from './shared/replies.service';
 import { OrganisationService } from './shared/organisation.service';
+import { AuthService } from './global/security/auth.service'
 
 import { AppComponent } from './app.component';
 import { LearningExperienceComponent } from './learning-experience/learning-experience.component';
@@ -71,7 +72,8 @@ const myFirebaseAuthConfig = {
   PostsService,
   UrlService,
   RepliesService,
-  OrganisationService
+  OrganisationService,
+  AuthService
   ],
   bootstrap: [AppComponent]
 })

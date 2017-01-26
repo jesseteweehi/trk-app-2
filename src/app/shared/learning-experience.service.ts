@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { AngularFire, FirebaseRef } from "angularfire2";
+import { AngularFire, FirebaseRef, FirebaseAuthState } from "angularfire2";
 import { Observable, Subject} from "rxjs/Rx";
 import { LearningExperienceModel } from './learning-experience'
 import { firebaseConfig } from '../app.module'
@@ -9,10 +9,15 @@ import {Http} from "@angular/http";
 export class LearningExperienceService {
 
   	sdkDb:any;
+    authentication: FirebaseAuthState;
 
-    constructor(private af:AngularFire, @Inject(FirebaseRef) fb, private http:Http) {
+
+    constructor(private af:AngularFire, 
+                @Inject(FirebaseRef) fb, 
+                private http:Http) {
 
         this.sdkDb = fb.database().ref();
+        this.af.auth.subscribe(auth => this.authentication = auth);
 
     }
 
@@ -29,11 +34,11 @@ export class LearningExperienceService {
   		
   		const learningExperienceToSave = Object.assign({}, LearningExperienceModel);
 
-  		const newLearningExperienceKey = this.sdkDb.child('learningexperiences').push().key;
+  		const newLearningExperienceKey = this.sdkDb.child(`users/${this.authentication.uid}/learningexperiences`).push().key;
 
   		let dataToSave = {};
 
-  		dataToSave[`learningexperiences/${newLearningExperienceKey}`] = learningExperienceToSave;
+  		dataToSave[`users/${this.authentication.uid}/learningexperiences/${newLearningExperienceKey}`] = learningExperienceToSave;
 
   		return this.firebaseUpdate(dataToSave)
 

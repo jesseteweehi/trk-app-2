@@ -1,6 +1,9 @@
-import { Component, Inject, OnDestroy } from '@angular/core';
-import { AngularFire, FirebaseAuth } from 'angularfire2';
-import { Observable, Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { AngularFire, FirebaseAuthState } from 'angularfire2';
+import { Observable } from 'rxjs/Rx'
+// import { AuthService}  from  './global/security/auth.service'
+// import { AuthInfoModel } from './global/security/auth-info'
+
 
 @Component({
   selector: 'trk-root',
@@ -9,12 +12,18 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class AppComponent {
 
-  	constructor(public af: AngularFire, @Inject(FirebaseAuth) public auth: FirebaseAuth) {
+    authentication: FirebaseAuthState;
 
+  	constructor(private af: AngularFire) {
   	}
 
+    ngOnInit(){
+
+        this.af.auth.subscribe(auth => this.authentication = auth)
+    }
+
   	login() {
-    	this.af.auth.login();
+        this.af.auth.login();
   	}
 
   	logout() {
