@@ -9,7 +9,7 @@ import { SkillsComponent } from './organisation/skills/skills.component';
 export const routerConfig : Route[] = [
     {
         path: '',
-        redirectTo: 'organisations',
+        redirectTo: 'learningexperiences',
         pathMatch: 'full'
     },
     {

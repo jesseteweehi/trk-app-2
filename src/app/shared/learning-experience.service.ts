@@ -22,12 +22,10 @@ export class LearningExperienceService {
     }
 
 
-	findAllLearningExperiences(): Observable<LearningExperienceModel[]> {
-	  	
-	  	return this.af.database.list('learningexperiences')
-	  		// .do(console.log)
+	findAllLearningExperiences(auth): Observable<LearningExperienceModel[]> {
+      
+        return this.af.database.list(`users/${auth}/learningexperiences`)
 	  		.map(LearningExperienceModel.fromJsonList);
-
   	}
 
   	createLearningExperience(LearningExperienceModel:any): Observable<any> {
@@ -67,7 +65,7 @@ export class LearningExperienceService {
 
     deleteLearningExperience(learningExperienceID:string): Observable<any> {
 
-        const url = firebaseConfig.databaseURL + '/learningexperiences/' + learningExperienceID + '.json';
+        const url = firebaseConfig.databaseURL + '/users/' + this.authentication.uid + '/learningexperiences/' + learningExperienceID + '.json';
 
         return this.http.delete(url);
     }
