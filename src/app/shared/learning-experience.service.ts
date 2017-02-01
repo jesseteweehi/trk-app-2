@@ -20,7 +20,7 @@ export class LearningExperienceService {
 
 	findAllLearningExperiences(org:string, auth:string): Observable<LearningExperienceModel[]> {
       
-        return this.af.database.list(`users/${auth}/organisations/${org}`)
+        return this.af.database.list(`users/${auth}/organisations/${org}/learningexperiences`)
 	  		.map(LearningExperienceModel.fromJsonList);
   	}
 

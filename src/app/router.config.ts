@@ -9,18 +9,18 @@ import { SkillsComponent } from './organisation/skills/skills.component';
 export const routerConfig : Route[] = [
     {
         path: '',
-        redirectTo: 'learningexperiences',
+        redirectTo: 'organisations',
         pathMatch: 'full'
     },
     {
         path:'learningexperiences',
         children:[
             {
-                path: '',
+                path: ':org',
                 component: LearningExperienceComponent,
             },
             {
-                path: ':id',
+                path: ':org/milestones/:id',
                 component: MilestoneComponent,
             }
         ]

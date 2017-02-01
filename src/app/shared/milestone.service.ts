@@ -61,7 +61,6 @@ export class MilestoneService {
 
     deleteMilestone(org:string, auth:string, learningExperienceID:string, milestoneID:string): Observable<any> {
 
-        users/${auth}/organisations/${org}/${lExperienceKey}/${newMilestoneKey}
         const url = firebaseConfig.databaseURL + '/users/' + auth + '/organisations/' + org + '/milestones/' + learningExperienceID +'/'+ milestoneID + '.json';
 
         return this.http.delete(url);

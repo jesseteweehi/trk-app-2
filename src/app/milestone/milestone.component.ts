@@ -36,34 +36,36 @@ export class MilestoneComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.ms.findMilestoneForLearningExperience(this.id)
-        .subscribe(
-            milestones => this.milestonesForLExperiences = milestones
-        );
+        // this.ms.findMilestoneForLearningExperience(this.id)
+        // .subscribe(
+        //     milestones => this.milestonesForLExperiences = milestones
+        // );
     }
 
-    create(form) {
-        this.ms.createMilestoneForLearningExperience(this.id,form.value)
-        .subscribe(
-            () => {
-                alert("Milestone Created Successfully");
-                form.reset();
-                },
-            err => alert(`error creating lessin ${err}`)
-            );
-    }
+    // ngOnDestroy() {
+    //     this.subscription.unsubscribe();
+    // }
 
-    delete(milestonekey) {
-        this.ms.deleteMilestone(this.id, milestonekey)
-        .subscribe(
-            () => alert('Milestone Deleted'),
-            console.error  
-            );
-    }
+    // create(form) {
+    //     this.ms.createMilestoneForLearningExperience(this.id,form.value)
+    //     .subscribe(
+    //         () => {
+    //             alert("Milestone Created Successfully");
+    //             form.reset();
+    //             },
+    //         err => alert(`error creating lessin ${err}`)
+    //         );
+    // }
+
+    // delete(milestonekey) {
+    //     this.ms.deleteMilestone(this.id, milestonekey)
+    //     .subscribe(
+    //         () => alert('Milestone Deleted'),
+    //         console.error  
+    //         );
+    // }
 
 
 
-    ngOnDestroy() {
-        this.subscription.unsubscribe();
-    }
+    
 }
