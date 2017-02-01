@@ -9,34 +9,30 @@ import {Http} from "@angular/http";
 export class LearningExperienceService {
 
   	sdkDb:any;
-    authentication: FirebaseAuthState;
-
 
     constructor(private af:AngularFire, 
                 @Inject(FirebaseRef) fb, 
                 private http:Http) {
 
         this.sdkDb = fb.database().ref();
-        this.af.auth.subscribe(auth => this.authentication = auth);
-
     }
 
 
-	findAllLearningExperiences(auth): Observable<LearningExperienceModel[]> {
+	findAllLearningExperiences(org:string, auth:string): Observable<LearningExperienceModel[]> {
       
-        return this.af.database.list(`users/${auth}/learningexperiences`)
+        return this.af.database.list(`users/${auth}/organisations/${org}`)
 	  		.map(LearningExperienceModel.fromJsonList);
   	}
 
-  	createLearningExperience(LearningExperienceModel:any): Observable<any> {
+  	createLearningExperience(org:string, auth:string, LearningExperienceModel:any): Observable<any> {
   		
   		const learningExperienceToSave = Object.assign({}, LearningExperienceModel);
 
-  		const newLearningExperienceKey = this.sdkDb.child(`users/${this.authentication.uid}/learningexperiences`).push().key;
+  		const newLearningExperienceKey = this.sdkDb.child(`users/${auth}/organisations/${org}/learningexperiences`).push().key;
 
   		let dataToSave = {};
 
-  		dataToSave[`users/${this.authentication.uid}/learningexperiences/${newLearningExperienceKey}`] = learningExperienceToSave;
+  		dataToSave[`users/${auth}/organisations/${org}/learningexperiences/${newLearningExperienceKey}`] = learningExperienceToSave;
 
   		return this.firebaseUpdate(dataToSave)
 
@@ -63,9 +59,9 @@ export class LearningExperienceService {
         return subject.asObservable();
     }
 
-    deleteLearningExperience(learningExperienceID:string): Observable<any> {
+    deleteLearningExperience(org:string, auth:string, learningExperienceID:string): Observable<any> {
 
-        const url = firebaseConfig.databaseURL + '/users/' + this.authentication.uid + '/learningexperiences/' + learningExperienceID + '.json';
+        const url = firebaseConfig.databaseURL + '/users/' + auth + '/organisations/'+ org + '/learningexperiences/' + learningExperienceID + '.json';
 
         return this.http.delete(url);
     }

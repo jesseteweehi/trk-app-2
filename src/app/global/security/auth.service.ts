@@ -1,33 +1,24 @@
-import { Injectable, OnInit} from '@angular/core';
-import { Observable, Subject, BehaviorSubject } from 'rxjs/Rx';
-import { FirebaseAuth, FirebaseAuthState }  from "angularfire2/index"
-import { AuthInfoModel } from "./auth-info"
+import { Injectable } from '@angular/core';
+import { AngularFire, FirebaseAuthState }  from "angularfire2"
+
 
 @Injectable()
 export class AuthService {
 
-	static UNKNOWN_USER = new AuthInfoModel(null)
+  auth: FirebaseAuthState
 
-	authInfo$: BehaviorSubject<AuthInfoModel> = new BehaviorSubject<AuthInfoModel>(AuthService.UNKNOWN_USER);
-
-  	constructor(private auth: FirebaseAuth) { }
-
-  	ngOnInit() {
-
-  	}
+	
+  constructor(private af: AngularFire) { 
+      this.af.auth.subscribe(auth => this.auth = auth  
+      )
+    }
 
   	login() {
-  		this.auth.login();
-
-  		let uid: string = ''
-  		this.auth.subscribe(auth => uid = auth.uid);
-  		const authInfo = new AuthInfoModel(uid);
-	
-  		this.authInfo$.next(authInfo)
-  	}
+      this.af.auth.login()
+    }
 
   	logout() {
-  		this.auth.logout();
+  		this.af.auth.logout();
   	}
 
 }

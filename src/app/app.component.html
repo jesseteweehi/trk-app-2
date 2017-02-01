@@ -1,10 +1,8 @@
 <md-toolbar [color]="primary">
   <span>Rond</span>
-  <span class="right">
-  	<button  md-icon-button [mdMenuTriggerFor]="menu">
-  		<md-icon color="primary">account_box</md-icon>
- 	</button>
- 	<button md-button (click)="login()" >Log In</button>
+  <span class="right"> 
+  		<span *ngIf="as.auth" >{{ as.auth?.auth.displayName }}</span>
+ 	<button md-button *ngIf="!as.auth" (click)="login()" >Log In</button>
   </span>
 </md-toolbar>
 
@@ -12,9 +10,12 @@
     <button md-menu-item (click)="logout()" > Log Out </button> 
 </md-menu>
 
-{{ authentication?.uid }}
+<!-- {{ as.auth | json }}
+ -->
+{{ as.auth?.uid }}
+
+
 
 <router-outlet></router-outlet>
-
 
 

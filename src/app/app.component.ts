@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFire, FirebaseAuthState } from 'angularfire2';
-import { Observable } from 'rxjs/Rx'
-// import { AuthService}  from  './global/security/auth.service'
+import { AuthService}  from  './global/security/auth.service'
 // import { AuthInfoModel } from './global/security/auth-info'
 
 
@@ -12,22 +10,20 @@ import { Observable } from 'rxjs/Rx'
 })
 export class AppComponent {
 
-    authentication: FirebaseAuthState;
 
-  	constructor(private af: AngularFire) {
+
+  	constructor(private as: AuthService) {
   	}
 
     ngOnInit(){
-
-        this.af.auth.subscribe(auth => this.authentication = auth)
     }
 
   	login() {
-        this.af.auth.login();
+        this.as.login();
   	}
 
   	logout() {
-	    this.af.auth.logout();
-	}
+	    this.as.logout();
+	  }
 
 }

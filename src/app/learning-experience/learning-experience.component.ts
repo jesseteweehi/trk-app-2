@@ -30,13 +30,14 @@ export class LearningExperienceComponent implements OnInit {
 		this.af.auth.subscribe(auth => {
 		   if (auth) {
 		   		this.ls.findAllLearningExperiences(auth.uid)
-		   			// .do(console.log)
 		   		.subscribe(
 		   			lexperiences => this.allLearningExperiences = lexperiences
-		   			);
+		   		);
 			}
 		})	
 	}
+
+
 
 	create(form) {
 	  	this.ls.createLearningExperience(form.value)

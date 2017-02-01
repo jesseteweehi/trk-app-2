@@ -27,6 +27,7 @@ import { OrganisationComponent } from './organisation/organisation.component'
 import { ApprovedUsersComponent } from './organisation/approved-users/approved-users.component';
 import { SkillsComponent } from './organisation/skills/skills.component';
 import { AuthStatusComponent } from './global/auth-status/auth-status.component';
+import { UserOrganisationsComponent } from './organisation/user-organisations/user-organisations.component';
 
 
 // Must export the config
@@ -40,7 +41,7 @@ export const firebaseConfig = {
 
 const myFirebaseAuthConfig = {
   provider: AuthProviders.Google,
-  method: AuthMethods.Redirect
+  method: AuthMethods.Popup
 }
 
 @NgModule({
@@ -54,7 +55,8 @@ const myFirebaseAuthConfig = {
     OrganisationComponent,
     ApprovedUsersComponent,
     SkillsComponent,
-    AuthStatusComponent
+    AuthStatusComponent,
+    UserOrganisationsComponent
   ],
   imports: [
     BrowserModule,

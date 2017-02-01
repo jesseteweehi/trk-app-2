@@ -16,23 +16,23 @@ export class MilestoneService {
 
     }
 
-    findMilestoneForLearningExperience(lExperienceKey: string): Observable<MilestoneModel[]> {
+    findMilestoneForLearningExperience(org:string, auth: string, lExperienceKey: string): Observable<MilestoneModel[]> {
 	  	
-	  	return this.af.database.list(`milestones/${lExperienceKey}`)
-	  		// .do(console.log)
+   
+	  	return this.af.database.list(`users/${auth}/organisations/${org}/${lExperienceKey}`)
 	  		.map(MilestoneModel.fromJsonList);
 
   	}
 
-  	createMilestoneForLearningExperience(lExperienceKey: string , MilestoneModel:any): Observable<any> {
+  	createMilestoneForLearningExperience(org: string, auth:string, lExperienceKey: string , MilestoneModel:any): Observable<any> {
 
   		const milestoneToSave = Object.assign({}, MilestoneModel);
 
-  		const newMilestoneKey = this.sdkDb.child(`milestones/${lExperienceKey}`).push().key;
+  		const newMilestoneKey = this.sdkDb.child(`users/${auth}/organisations/${org}/${lExperienceKey}`).push().key;
 
   		let dataToSave = {};
 
-  		dataToSave[`milestones/${lExperienceKey}/${newMilestoneKey}`] = milestoneToSave
+  		dataToSave[`users/${auth}/organisations/${org}/milestones/${lExperienceKey}/${newMilestoneKey}`] = milestoneToSave
 
   		return this.firebaseUpdate(dataToSave)
 
@@ -59,9 +59,10 @@ export class MilestoneService {
         return subject.asObservable();
     }
 
-    deleteMilestone(learningExperienceID:string, milestoneID:string): Observable<any> {
+    deleteMilestone(org:string, auth:string, learningExperienceID:string, milestoneID:string): Observable<any> {
 
-        const url = firebaseConfig.databaseURL + '/milestones/' + learningExperienceID +'/'+ milestoneID + '.json';
+        users/${auth}/organisations/${org}/${lExperienceKey}/${newMilestoneKey}
+        const url = firebaseConfig.databaseURL + '/users/' + auth + '/organisations/' + org + '/milestones/' + learningExperienceID +'/'+ milestoneID + '.json';
 
         return this.http.delete(url);
     }

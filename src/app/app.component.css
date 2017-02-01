@@ -5,3 +5,7 @@ body {
 .right {
 	margin-left: auto;
 }
+
+.img-circle {
+    border-radius: 50%;
+}
