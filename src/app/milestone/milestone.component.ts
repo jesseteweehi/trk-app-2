@@ -16,14 +16,19 @@ export class MilestoneComponent implements OnInit {
     public milestonesForLExperiences: MilestoneModel[];
     public form: FormGroup;
 	private subscription: Subscription;
+    private org : string;
 	private id : string;
+    private authuid: string;
 
     constructor(private ar: ActivatedRoute, 
                 public fb: FormBuilder, 
                 private ms: MilestoneService,
                 private af: AngularFire) {
       
-        this.subscription = ar.params.subscribe((param: any) => this.id = param['id']
+        this.subscription = ar.params.subscribe((param: any) => {
+            this.org = param['org'];
+            this.id = param['id'];
+            }
         );
 
         this.form = this.fb.group({
@@ -35,35 +40,44 @@ export class MilestoneComponent implements OnInit {
 
     }
 
+  
     ngOnInit() {
-        // this.ms.findMilestoneForLearningExperience(this.id)
-        // .subscribe(
-        //     milestones => this.milestonesForLExperiences = milestones
-        // );
+        this.af.auth.subscribe(auth => {
+            if (auth) {
+                this.ms.findMilestoneForLearningExperience(this.org, auth.uid, this.id)
+                    .subscribe(
+                    milestones => {
+                        this.milestonesForLExperiences = milestones
+                    }
+                    );
+                this.authuid = auth.uid;
+            }
+        })    
     }
 
-    // ngOnDestroy() {
-    //     this.subscription.unsubscribe();
-    // }
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
+    }
 
-    // create(form) {
-    //     this.ms.createMilestoneForLearningExperience(this.id,form.value)
-    //     .subscribe(
-    //         () => {
-    //             alert("Milestone Created Successfully");
-    //             form.reset();
-    //             },
-    //         err => alert(`error creating lessin ${err}`)
-    //         );
-    // }
+    create(form) {
 
-    // delete(milestonekey) {
-    //     this.ms.deleteMilestone(this.id, milestonekey)
-    //     .subscribe(
-    //         () => alert('Milestone Deleted'),
-    //         console.error  
-    //         );
-    // }
+        this.ms.createMilestoneForLearningExperience(this.org, this.authuid, this.id, form.value)
+        .subscribe(
+            () => {
+                alert("Milestone Created Successfully");
+                form.reset();
+                },
+            err => alert(`error creating lessin ${err}`)
+            );
+    }
+
+    delete(milestonekey) {
+        this.ms.deleteMilestone(this.org, this.authuid, this.id, milestonekey)
+        .subscribe(
+            () => alert('Milestone Deleted'),
+            console.error  
+            );
+    }
 
 
 

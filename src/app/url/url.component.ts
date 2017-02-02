@@ -10,6 +10,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class UrlComponent implements OnInit {
 	@Input() public postID : string;
+  @Input() public org : string;
+  @Input() public authuid: string;
 	public urlsForPost: UrlModel[];
 	public form: FormGroup;
   public openstring : string = ''
@@ -23,7 +25,7 @@ export class UrlComponent implements OnInit {
   	}
 
   	create(form) {
-  		this.us.createUrlsForPosts(this.postID, form.value)
+  		this.us.createUrlsForPosts(this.org, this.authuid, this.postID, form.value)
   			.subscribe(
   			  	() => {
   			    	form.reset();
@@ -34,7 +36,7 @@ export class UrlComponent implements OnInit {
 
 
   	ngOnInit() {
-  		this.us.findUrlsForPost(this.postID)
+  		this.us.findUrlsForPost(this.org, this.authuid, this.postID)
   			.subscribe(
   				urls => this.urlsForPost = urls
   			);
@@ -49,7 +51,7 @@ export class UrlComponent implements OnInit {
     }
     
     deleteurl(urlkey){
-      this.us.deleteUrl(this.postID, urlkey)
+      this.us.deleteUrl(this.org, this.authuid, this.postID, urlkey)
         .subscribe(
                 () => console.log('url Deleted'),
                 console.error

@@ -32,7 +32,10 @@
 
     <hr>
 
-    <trk-url [postID]="p.$key"></trk-url>
+    <trk-url [postID]="p.$key"
+             [org]="org"
+             [authuid] = "authuid"> 
+    </trk-url>
 
     </md-card-content>
   </md-card>
@@ -43,7 +46,9 @@
 
 
   
-    <trk-replies [postID]="p.$key"></trk-replies>
+    <trk-replies [postID]="p.$key"
+                 [org]="org"
+                 [authuid] = "authuid"> </trk-replies>
   
 
   <div style="clear: right"></div>

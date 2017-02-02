@@ -15,29 +15,32 @@ export class PostsService {
 
     constructor(private af:AngularFire, 
         @Inject(FirebaseRef) fb, 
-        private http:Http, 
-        private es:EmbedlyService) {
+        private http:Http) {
 
         this.sdkDb = fb.database().ref();
 
     }
 
-    findPostsForMilestone(milestoneKey:string): Observable<PostModel[]> {
+    findPostsForMilestone(org:string, auth: string, milestoneKey:string): Observable<PostModel[]> {
 
-    	return this.af.database.list(`posts/${milestoneKey}`)
+        const path = `users/${auth}/organisations/${org}/posts/${milestoneKey}` 
+
+    	return this.af.database.list(path)
     		// .do(console.log)
     		.map(PostModel.fromJsonList);
     }
 
-    createPostsForMilestone(milestoneKey:string, PostModel:any): Observable<any> {
+    createPostsForMilestone(org:string, auth: string, milestoneKey:string, PostModel:any): Observable<any> {
+
+        const path = `users/${auth}/organisations/${org}/posts/${milestoneKey}`
  
     	const postToSave = Object.assign({}, PostModel);
 
-    	const newPostKey = this.sdkDb.child(`posts/${milestoneKey}`).push().key;
+    	const newPostKey = this.sdkDb.child(path).push().key;
 
     	let dataToSave = {};
 
-    	dataToSave[`posts/${milestoneKey}/${newPostKey}`] = postToSave
+    	dataToSave[path + '/' + newPostKey] = postToSave
 
     	return this.firebaseUpdate(dataToSave)
     }
@@ -62,9 +65,9 @@ export class PostsService {
         return subject.asObservable();
     }
 
-    deletePost(milestoneID:string, postID:string): Observable<any> {
+    deletePost(org:string, auth: string, milestoneID:string, postID:string): Observable<any> {
 
-        const url = firebaseConfig.databaseURL + '/posts/' + milestoneID +'/'+ postID + '.json';
+        const url = firebaseConfig.databaseURL + '/users/' +auth+ '/organisations/' +org+ '/posts/' + milestoneID +'/'+ postID + '.json';
 
         return this.http.delete(url);
     }     

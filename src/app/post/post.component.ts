@@ -10,44 +10,55 @@ import { FormGroup, FormBuilder } from '@angular/forms'
 })
 export class PostComponent implements OnInit {
   @Input() public milestoneID : string;
+  @Input() public org : string;
+  @Input() public authuid: string;
   public postsForMilestone: PostModel[];
   public form: FormGroup;
 
-  constructor(private ps: PostsService, public fb: FormBuilder) {
-  	this.form = this.fb.group({
+  constructor(private ps: PostsService, 
+              public fb: FormBuilder) {
+
+    this.form = this.fb.group({
   	  title: '',
   	  description: '',
   	  url: '' 
   	});
 
-  	}
+  }
+
+  ngOnInit() {
+   
+        this.ps.findPostsForMilestone(this.org, this.authuid, this.milestoneID)
+          // .do(console.log)
+          .subscribe(
+            posts => this.postsForMilestone = posts
+          );
+     
+  }
+    
+
+  
+
 
   create(form, type) {
   	form.value.posttype = type
-  	// console.log(form.value)
-  	this.ps.createPostsForMilestone(this.milestoneID,form.value)
+  	
+  	this.ps.createPostsForMilestone(this.org, this.authuid, this.milestoneID, form.value)
   		.subscribe(
   		  	() => {
   		    	form.reset();
   		  	},
-  		  	err => alert(`error creating lessin ${err}`)
+  		  	err => alert(`error creating Post ${err}`)
   		  	);
 
   }
 
-  ngOnInit() {
-  	this.ps.findPostsForMilestone(this.milestoneID)
-  		// .do(console.log)
-  		.subscribe(
-  			posts => this.postsForMilestone = posts
-  		);
-
-  }
+ 
 
   deletePost(postkey) {
-    this.ps.deletePost(this.milestoneID, postkey)
+    this.ps.deletePost(this.org, this.authuid, this.milestoneID, postkey)
       .subscribe(
-                () => console.log('url Deleted'),
+                () => console.log('Url Deleted'),
                 console.error
             );
 

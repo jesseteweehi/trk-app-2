@@ -10,6 +10,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class RepliesComponent implements OnInit {
 	@Input() public postID : string;
+  @Input() public org : string;
+  @Input() public authuid: string;
 	public repliesForPost: RepliesModel[];
 	public form: FormGroup;
 	public openstring : string = ''
@@ -23,7 +25,7 @@ export class RepliesComponent implements OnInit {
   	}
 
   	create(form) {
-  		this.rs.createRepliesForPosts(this.postID, form.value)
+  		this.rs.createRepliesForPosts(this.org, this.authuid, this.postID, form.value)
   			.subscribe(
   			  	() => {
   			    	form.reset();
@@ -33,16 +35,16 @@ export class RepliesComponent implements OnInit {
   	}
 
   	ngOnInit() {
-  		this.rs.findRepliesForPost(this.postID)
+  		this.rs.findRepliesForPost(this.org, this.authuid, this.postID)
   			.subscribe(
   				replies => this.repliesForPost = replies
   				);
   	}
 
   	deletereplies(replieskey) {
-  		this.rs.deleteReply(this.postID, replieskey)
+  		this.rs.deleteReply(this.org, this.authuid, this.postID, replieskey)
   			.subscribe(
-  					() => console.log('replies Deleted'),
+  					() => console.log('reply Deleted'),
   					console.error
   				);
   	}

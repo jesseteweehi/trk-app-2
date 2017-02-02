@@ -10,29 +10,34 @@ export class MilestoneService {
 
   	sdkDb:any;
 
-    constructor(private af:AngularFire, @Inject(FirebaseRef) fb, private http:Http) {
+    constructor(private af:AngularFire, 
+                @Inject(FirebaseRef) fb, 
+                private http:Http) {
 
         this.sdkDb = fb.database().ref();
 
     }
 
     findMilestoneForLearningExperience(org:string, auth: string, lExperienceKey: string): Observable<MilestoneModel[]> {
-	  	
-   
-	  	return this.af.database.list(`users/${auth}/organisations/${org}/${lExperienceKey}`)
+      
+      const path = `users/${auth}/organisations/${org}/milestones/${lExperienceKey}`  	
+
+	  	return this.af.database.list(path)
 	  		.map(MilestoneModel.fromJsonList);
 
   	}
 
   	createMilestoneForLearningExperience(org: string, auth:string, lExperienceKey: string , MilestoneModel:any): Observable<any> {
 
+      const path = `users/${auth}/organisations/${org}/milestones/${lExperienceKey}`
+
   		const milestoneToSave = Object.assign({}, MilestoneModel);
 
-  		const newMilestoneKey = this.sdkDb.child(`users/${auth}/organisations/${org}/${lExperienceKey}`).push().key;
+  		const newMilestoneKey = this.sdkDb.child(path).push().key;
 
   		let dataToSave = {};
 
-  		dataToSave[`users/${auth}/organisations/${org}/milestones/${lExperienceKey}/${newMilestoneKey}`] = milestoneToSave
+  		dataToSave[path + '/' + newMilestoneKey] = milestoneToSave
 
   		return this.firebaseUpdate(dataToSave)
 

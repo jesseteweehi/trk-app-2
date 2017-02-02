@@ -19,21 +19,27 @@ export class UrlService {
 
     }
 
-    findUrlsForPost(postKey:string): Observable<UrlModel[]> {
+    findUrlsForPost(org:string, auth: string, postKey:string): Observable<UrlModel[]> {
 
-    	return this.af.database.list(`urls/${postKey}`)
+        const path = `users/${auth}/organisations/${org}/`
+
+    	return this.af.database.list(path + `urls/${postKey}`)
     		.map(UrlModel.fromJsonList)
     }
 
-    createUrlsForPosts(postKey:string, UrlModel:any): Observable<any> {
+    createUrlsForPosts(org:string, auth: string, postKey:string, UrlModel:any): Observable<any> {
+
+        console.log(org,auth,postKey)
+
+        const path = `users/${auth}/organisations/${org}/`
 
     	const urlToSave = Object.assign({}, UrlModel);
 
-    	const newUrlKey = this.sdkDb.child(`url/${postKey}`).push().key;
+    	const newUrlKey = this.sdkDb.child(path + `urls/${postKey}`).push().key;
 
     	let dataToSave = {};
 
-    	dataToSave[`urls/${postKey}/${newUrlKey}`] = urlToSave
+    	dataToSave[path + `urls/${postKey}/${newUrlKey}`] = urlToSave
 
     	return this.firebaseUpdate(dataToSave)
     }
@@ -58,9 +64,11 @@ export class UrlService {
         return subject.asObservable();
     }
 
-    deleteUrl(postID:string, UrlID:string): Observable<any> {
+    deleteUrl(org:string, auth: string, postID:string, UrlID:string): Observable<any> {
 
-    	const url = firebaseConfig.databaseURL + '/urls/' + postID + '/' + UrlID + '.json';
+        const path = `/users/${auth}/organisations/${org}/`
+
+    	const url = firebaseConfig.databaseURL + path + 'urls/' + postID + '/' + UrlID + '.json';
 
     	return this.http.delete(url);
     } 

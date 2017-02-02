@@ -19,21 +19,25 @@ export class RepliesService {
 
   	}
 
-  	findRepliesForPost(postKey:string): Observable<RepliesModel[]> {
+  	findRepliesForPost(org:string, auth: string, postKey:string): Observable<RepliesModel[]> {
 
-  		return this.af.database.list(`replies/${postKey}`)
+      const path = `users/${auth}/organisations/${org}/`
+
+  		return this.af.database.list(path + `replies/${postKey}`)
   			.map(RepliesModel.fromJsonList)
   	}
 
-  	createRepliesForPosts(postKey:string, RepliesModel:any): Observable<any> {
+  	createRepliesForPosts(org:string, auth: string, postKey:string, RepliesModel:any): Observable<any> {
+
+      const path = `users/${auth}/organisations/${org}/`
 
   		const replyToSave = Object.assign({}, RepliesModel);
 
-  		const newReplyKey = this.sdkDb.child(`replies/${postKey}`).push().key;
+  		const newReplyKey = this.sdkDb.child(path + `replies/${postKey}`).push().key;
 
   		let dataToSave = {};
 
-  		dataToSave[`replies/${postKey}/${newReplyKey}`] = replyToSave
+  		dataToSave[path + `replies/${postKey}/${newReplyKey}`] = replyToSave
 
   		return this.firebaseUpdate(dataToSave)
   	}
@@ -58,9 +62,11 @@ export class RepliesService {
   	    return subject.asObservable();
   	}
 
-  	deleteReply (postID:string, ReplyID:string): Observable<any> {
+  	deleteReply (org:string, auth: string, postID:string, ReplyID:string): Observable<any> {
 
-    	const url = firebaseConfig.databaseURL + '/urls/' + postID + '/' + ReplyID + '.json';
+      const path = `users/${auth}/organisations/${org}/`
+
+    	const url = firebaseConfig.databaseURL + path +  '/replies/' + postID + '/' + ReplyID + '.json';
 
     	return this.http.delete(url);
     } 

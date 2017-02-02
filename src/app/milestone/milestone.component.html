@@ -1,5 +1,6 @@
 <md-card *ngFor="let milestone of milestonesForLExperiences">
 
+ 
   <md-menu #menu="mdMenu">
       <button md-menu-item> Edit </button>
       <button md-menu-item (click)="delete(milestone.$key)"> Delete </button>
@@ -16,7 +17,10 @@
 
     <hr>
 
-    <trk-post [milestoneID]="milestone.$key"></trk-post>
+    <trk-post [milestoneID]="milestone.$key"
+              [org]="org"
+              [authuid] = "authuid">
+    </trk-post>
 
 
 
@@ -30,6 +34,7 @@
 <form novalidate [formGroup]="form" (submit)="create(form)">
 
 <md-card>
+   
 	<md-card-title>New Milestone</md-card-title> 
 
 	<md-input-container style="width: 100%">
