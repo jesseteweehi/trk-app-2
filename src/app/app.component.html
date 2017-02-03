@@ -3,12 +3,13 @@
   <span class="right"> 
   		<span *ngIf="as.auth" >{{ as.auth?.auth.displayName }}</span>
  	<button md-button *ngIf="!as.auth" (click)="login()" >Log In</button>
+
   </span>
 </md-toolbar>
 
-<md-menu #menu="mdMenu">
-    <button md-menu-item (click)="logout()" > Log Out </button> 
-</md-menu>
+
+   
+
 
 <!-- {{ as.auth | json }}
  -->

@@ -1,3 +1,10 @@
+<md-card>
+  <md-input-container style="width: 100%">
+     <input #j md-input placeholder="Join Organisation" (submit)="join(j.value)">
+  </md-input-container>
+  
+</md-card>
+
 <md-card *ngFor="let o of allorganisations">
        
       <md-menu #menu="mdMenu">
@@ -5,7 +12,8 @@
           <button md-menu-item (click)="delete(o.$key)"> Delete </button>
       </md-menu>
 
-      <md-card-subtitle> 
+      <md-card-subtitle>
+         {{o.code}}
          <button [mdMenuTriggerFor]="menu" md-icon-button color="primary">
          <md-icon>more_vert</md-icon>
          </button>
@@ -13,7 +21,7 @@
 
       <md-card-title>{{o.title}}</md-card-title> 
       <md-card-content>
-         <p>{{o.website}}</p>    
+         <p>{{o.description}}</p>    
       </md-card-content>
       <md-card-actions align="end">
 
@@ -29,15 +37,15 @@
 <form novalidate [formGroup]="form" (submit)="create(form)">
 
 <md-card>
-	<md-card-title>New Organisation</md-card-title> 
+	<md-card-title>Create New Learning Organisation</md-card-title> 
 
 	<md-input-container style="width: 100%">
 	   <input  formControlName="title" md-input placeholder="Title">
 	</md-input-container>
 
-    <md-input-container style="width: 100%">
-     	<input formControlName="website" md-input placeholder="Website">
-    </md-input-container>
+  <md-input-container style="width: 100%">
+      <textarea formControlName="description" md-input placeholder="Description"></textarea>
+  </md-input-container>
 
     <button type="submit" md-raised-button color="primary">Create</button>
 
