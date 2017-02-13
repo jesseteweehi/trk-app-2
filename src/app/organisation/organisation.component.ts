@@ -43,9 +43,11 @@ export class OrganisationComponent implements OnInit {
     }
 
     create(form) {
-        form.value.code = this.randomString(8)
+        const code:string = this.randomString(8)
 
-      	this.os.createOrganisationForUser(this.authuid, form.value)
+        form.value.code = code
+
+      	this.os.createOrganisationForUser(this.authuid, code, form.value)
       		.subscribe(
       			() => {
       				alert("Organisation Created Successfully");
@@ -55,9 +57,8 @@ export class OrganisationComponent implements OnInit {
       			);
     }
 
-    join(org) {
-      console.log('here')
-      this.os.joinOrganisationByCode(this.authuid, org)
+    join(code) {
+      this.os.joinOrganisationByCode(this.authuid, code)
     }
 
     // delete(key) {

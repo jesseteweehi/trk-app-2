@@ -4,7 +4,7 @@ export class OrganisationModel {
 		public title:string,
 		public description:string,
 		public code:string,
-		public orgKey:string
+		public orgkey:string
 	
 		) {}
 
@@ -12,13 +12,13 @@ export class OrganisationModel {
 		return array.map(OrganisationModel.fromJson);
 	}
 
-	static fromJson({$key, title, description, code, orgKey}): OrganisationModel {
+	static fromJson({$key, title, description, code, orgkey}): OrganisationModel {
 		return new OrganisationModel(
 			$key,
 			title,
 			description,
 			code,
-			orgKey
+			orgkey
 			)
 	}
 }
