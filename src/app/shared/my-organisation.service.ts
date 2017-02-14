@@ -54,11 +54,23 @@ export class UserOrganisationService {
         org => {
           let dataToSave = {};
           dataToSave[path + '/' + org[0].$key] = true
+          dataToSave[`organisations/` + org[0].$key + `/members/${auth}`] = true
 
           return this.firebaseUpdate(dataToSave)
         }
         )
     
+    }
+
+    findUsersForOrganisation(auth:string): Observable<OrganisationModel[]> {
+
+      const userorganisations$ = this.af.database.list(`users/${auth}/myorganisations`);
+
+      return userorganisations$
+      .map(orgsperuser => orgsperuser
+      .map(orgperuser => this.af.database.object(`organisations/${orgperuser.$key}/metadata`)))
+      .flatMap(fbojs => Observable.combineLatest(fbojs));
+         
     }
 
 

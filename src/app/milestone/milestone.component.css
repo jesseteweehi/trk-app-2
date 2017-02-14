@@ -25,3 +25,18 @@ md-card-subtitle button {
 	bottom: 10px;
 	float: right;
 }
+
+md-card-content b {
+  margin-left: 5px ;
+  margin-right: 5px ;
+  background: #a68cd4;
+  color: #FFF;
+  font-size: 11px;
+  padding: 5px;
+  font-weight: 700;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  text-transform: uppercase;
+
+}

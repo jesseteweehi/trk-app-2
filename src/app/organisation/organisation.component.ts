@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { UserOrganisationService } from '../shared/my-organisation.service';
-import { OrganisationModel } from '../shared/organisation'
+import { OrganisationModel } from '../shared/organisation';
 import { AngularFire } from "angularfire2";
 
 @Component({
@@ -81,3 +81,12 @@ export class OrganisationComponent implements OnInit {
 // they get added as a member of the organisation
 // This membership allows other admins of this organisation to create and edit their learning experiences within the organisation under their name.
 // Once they are a member they must only be able to delete the information they have created.
+
+// Create Admin ability to see the different memberships of the organisation.
+// Anyone can become a member of the organisation by using the join code.
+// Only admin can change members into Teachers / Admins etc.
+// Teacher have the ability to see and edit members experiences within their organisation
+// Teacher have the ability to create skills for an organisation
+// Members have the ability to edit the material they have created within the organisation
+// Members can add skills they have earned to their skills list by creating a reference to evidence within a learning experience
+// Teachers can add and verify skills members have referenced.

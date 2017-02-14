@@ -2,6 +2,7 @@
 
  
   <md-menu #menu="mdMenu">
+      <button md-menu-item> Skill </button>
       <button md-menu-item> Edit </button>
       <button md-menu-item (click)="delete(milestone.$key)"> Delete </button>
   </md-menu>
@@ -13,6 +14,12 @@
     {{ milestone.title }}  <b>{{milestone.date | date }}</b>
   </md-card-title> 
   <md-card-content >
+    <trk-my-skills
+              [milestoneID]="milestone.$key"
+              [org]="org"
+              [authuid] = "authuid">            
+              </trk-my-skills>
+
     <p>{{milestone.description}}</p>
 
     <hr>

@@ -17,6 +17,8 @@ import { RepliesService } from './shared/replies.service';
 import { OrganisationService } from './shared/organisation.service';
 import { AuthService } from './global/security/auth.service'
 import { UserOrganisationService } from './shared/my-organisation.service';
+import { UserMetaService } from './shared/user-meta.service';
+import { MySkillsService } from './shared/my-skills.service';
 
 import { AppComponent } from './app.component';
 import { LearningExperienceComponent } from './learning-experience/learning-experience.component';
@@ -25,10 +27,11 @@ import { PostComponent } from './post/post.component';
 import { UrlComponent } from './url/url.component';
 import { RepliesComponent } from './replies/replies.component';
 import { OrganisationComponent } from './organisation/organisation.component'
-import { ApprovedUsersComponent } from './organisation/approved-users/approved-users.component';
 import { SkillsComponent } from './organisation/skills/skills.component';
 import { AuthStatusComponent } from './global/auth-status/auth-status.component';
-import { UserOrganisationsComponent } from './organisation/user-organisations/user-organisations.component';
+import { MySkillsComponent } from './my-skills/my-skills.component';
+
+import { DialogResultExampleDialog } from './my-skills/my-skills.component';
 
 
 // Must export the config
@@ -54,10 +57,10 @@ const myFirebaseAuthConfig = {
     UrlComponent,
     RepliesComponent,
     OrganisationComponent,
-    ApprovedUsersComponent,
     SkillsComponent,
     AuthStatusComponent,
-    UserOrganisationsComponent
+    MySkillsComponent,
+    DialogResultExampleDialog,
   ],
   imports: [
     BrowserModule,
@@ -77,8 +80,10 @@ const myFirebaseAuthConfig = {
   RepliesService,
   OrganisationService,
   AuthService,
-  UserOrganisationService
+  UserOrganisationService,
+  UserMetaService
   ],
+  entryComponents: [DialogResultExampleDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

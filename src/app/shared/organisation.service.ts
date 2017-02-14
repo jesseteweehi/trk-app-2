@@ -4,7 +4,6 @@ import { Observable, Subject} from "rxjs/Rx";
 import { firebaseConfig } from '../app.module'
 import {Http} from "@angular/http";
 import { OrganisationModel } from './organisation'
-import { ApprovedUserModel } from './approveduser'
 import { SkillModel } from './skill'
 
 @Injectable()
@@ -47,34 +46,34 @@ export class OrganisationService {
     }
 
 
-    findAllApprovedUsers(organisationKey: string): Observable<ApprovedUserModel[]> {
+    // findAllApprovedUsers(organisationKey: string): Observable<ApprovedUserModel[]> {
 
-        return this.af.database.list(`organisations/${organisationKey}/approvedusers`)
-            .map(ApprovedUserModel.fromJsonList);
+    //     return this.af.database.list(`organisations/${organisationKey}/approvedusers`)
+    //         .map(ApprovedUserModel.fromJsonList);
 
-    }
+    // }
 
 
-    createApprovedUserForOrganisation(organisationKey: string, ApprovedUserModel:any): Observable<any> {
+    // createApprovedUserForOrganisation(organisationKey: string, ApprovedUserModel:any): Observable<any> {
 
-        const approvedUserToSave = Object.assign({}, ApprovedUserModel);
+    //     const approvedUserToSave = Object.assign({}, ApprovedUserModel);
 
-        const newApprovedUserKey = this.sdkDb.child(`organisations/${organisationKey}/approvedusers`).push().key;
+    //     const newApprovedUserKey = this.sdkDb.child(`organisations/${organisationKey}/approvedusers`).push().key;
 
-        let dataToSave = {};
+    //     let dataToSave = {};
 
-        dataToSave[`organisations/${organisationKey}/approvedusers/${newApprovedUserKey}`] = approvedUserToSave
+    //     dataToSave[`organisations/${organisationKey}/approvedusers/${newApprovedUserKey}`] = approvedUserToSave
 
-        return this.firebaseUpdate(dataToSave)
-    }
+    //     return this.firebaseUpdate(dataToSave)
+    // }
 
-    deleteApprovedUserFromOrganisation(organisationID:string, approveduserID:string): Observable<any> {
+    // deleteApprovedUserFromOrganisation(organisationID:string, approveduserID:string): Observable<any> {
 
-        const url = firebaseConfig.databaseURL + '/organisations/' + organisationID + '/approvedusers/'+ approveduserID + '.json';
+    //     const url = firebaseConfig.databaseURL + '/organisations/' + organisationID + '/approvedusers/'+ approveduserID + '.json';
 
-        return this.http.delete(url);
+    //     return this.http.delete(url);
 
-    }
+    // }
 
     findAllOrganisations(): Observable<OrganisationModel[]> {
 
